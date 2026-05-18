@@ -24,14 +24,73 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Reeact — Maîtrisez votre réputation en ligne",
+  metadataBase: new URL("https://reeact.io"),
+
+  title: {
+    default: "Reeact — Maîtrisez votre e-réputation en ligne",
+    template: "%s | Reeact",
+  },
+
   description:
-    "Reeact surveille Google, les réseaux et la presse 24h/24, analyse chaque mention par IA, et déclenche les bonnes interventions — avant que ça parte.",
-  keywords: ["réputation en ligne", "monitoring", "e-réputation", "mentions", "veille"],
+    "Reeact surveille Google, les réseaux sociaux et la presse 24h/24. Analyse IA de chaque mention, alertes temps réel et interventions légales — tout en un.",
+
+  keywords: [
+    "e-réputation",
+    "réputation en ligne",
+    "monitoring réputation",
+    "veille marque",
+    "surveillance Google",
+    "gestion réputation",
+    "mentions web",
+    "alertes réputation",
+    "droit à l'oubli",
+    "suppression contenu",
+  ],
+
+  authors: [{ name: "Reeact", url: "https://reeact.io" }],
+  creator: "Reeact",
+  publisher: "Reeact",
+
+  alternates: {
+    canonical: "https://reeact.io",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+
   openGraph: {
-    title: "Reeact — Maîtrisez votre réputation en ligne",
-    description: "Surveillance IA, alertes temps réel et interventions légales — tout-en-un.",
     type: "website",
+    url: "https://reeact.io",
+    siteName: "Reeact",
+    locale: "fr_FR",
+    title: "Reeact — Maîtrisez votre e-réputation en ligne",
+    description:
+      "Surveillance IA 24h/24, alertes temps réel et interventions légales. Protégez votre image sur Google, les réseaux et la presse.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Reeact — Plateforme française d'e-réputation",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Reeact — Maîtrisez votre e-réputation en ligne",
+    description:
+      "Surveillance IA 24h/24, alertes temps réel et interventions légales. Protégez votre image sur Google, les réseaux et la presse.",
+    images: ["/opengraph-image"],
   },
 };
 

@@ -152,14 +152,17 @@ function Nav() {
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-      padding: scrolled ? "14px 40px" : "22px 40px",
       background: scrolled ? "rgba(251,248,242,0.92)" : "transparent",
       backdropFilter: scrolled ? "saturate(180%) blur(12px)" : "none",
       WebkitBackdropFilter: scrolled ? "saturate(180%) blur(12px)" : "none",
       borderBottom: scrolled ? "1px solid rgba(20,30,40,0.06)" : "1px solid transparent",
       transition: "all .25s ease",
-      display: "flex", alignItems: "center", justifyContent: "space-between",
     }}>
+      <div style={{
+        maxWidth: 1400, margin: "0 auto",
+        padding: scrolled ? "14px 40px" : "22px 40px",
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+      }} className="nav-inner">
       <a href="#hero" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}>
         <Wordmark height={40} color={TEAL} />
       </a>
@@ -202,7 +205,9 @@ function Nav() {
         }
       </button>
 
-      {/* Mobile menu */}
+      </div>{/* /nav-inner */}
+
+      {/* Mobile menu — full width, outside the boxed container */}
       {open && (
         <div style={{
           position: "absolute", top: "100%", left: 0, right: 0,
@@ -849,7 +854,7 @@ const CSS = `
     section[id]   { padding-left: 24px !important; padding-right: 24px !important; }
     .hidden-mobile { display: none !important; }
     .show-mobile   { display: flex !important; }
-    nav { padding-left: 24px !important; padding-right: 24px !important; }
+    .nav-inner { padding-left: 24px !important; padding-right: 24px !important; }
   }
 
   @media (max-width: 560px) {

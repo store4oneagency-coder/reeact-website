@@ -21,17 +21,15 @@ const MONO    = '"JetBrains Mono", "Courier New", monospace';
 
 // ─── Primitives ───────────────────────────────────────────────────────────────
 const Wordmark = ({ height = 36, color = TEAL }: { height?: number; color?: string }) => {
-  const FULL_W = 1374, FULL_H = 473, MARK_H = 345;
-  const imgH = height * (FULL_H / MARK_H);
-  const imgW = imgH * (FULL_W / FULL_H);
+  const ratio = 1374 / 473;
   return (
     <div style={{
-      height, width: height * (FULL_W / MARK_H), display: "inline-block",
+      height, width: height * ratio, display: "inline-block",
       backgroundColor: color,
       WebkitMaskImage: "url(/reeact-logo.png)", maskImage: "url(/reeact-logo.png)",
-      WebkitMaskSize: `${imgW}px ${imgH}px`, maskSize: `${imgW}px ${imgH}px`,
-      WebkitMaskPosition: "top left", maskPosition: "top left",
+      WebkitMaskSize: "contain", maskSize: "contain",
       WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat",
+      WebkitMaskPosition: "center", maskPosition: "center",
     }} />
   );
 };

@@ -189,7 +189,7 @@ function Nav() {
       {/* Desktop CTA */}
       <div style={{ display: "flex", gap: 12, alignItems: "center" }} className="hidden-mobile">
         <a href="/app" style={{ color: TEAL_DEEP, textDecoration: "none", fontSize: 15, fontWeight: 500, opacity: 0.78 }}>Connexion</a>
-        <Btn href="/subscription" primary size="sm">Essai gratuit</Btn>
+        <Btn href="/subscription" primary size="sm">S&apos;abonner</Btn>
       </div>
 
       {/* Mobile burger */}
@@ -223,7 +223,7 @@ function Nav() {
           ))}
           <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
             <a href="/app" style={{ textAlign: "center", padding: "12px", border: `1.5px solid ${TEAL}22`, borderRadius: 12, color: TEAL_DEEP, textDecoration: "none", fontSize: 15, fontWeight: 500 }}>Connexion</a>
-            <a href="/subscription" style={{ textAlign: "center", padding: "12px", background: ORANGE, borderRadius: 12, color: "#fff", textDecoration: "none", fontSize: 15, fontWeight: 600 }}>Essai gratuit</a>
+            <a href="/subscription" style={{ textAlign: "center", padding: "12px", background: ORANGE, borderRadius: 12, color: "#fff", textDecoration: "none", fontSize: 15, fontWeight: 600 }}>S&apos;abonner</a>
           </div>
         </div>
       )}
@@ -366,12 +366,12 @@ function Hero() {
           </Reveal>
           <Reveal delay={220}>
             <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-              <Btn primary href="/subscription">Démarrer l&apos;essai gratuit</Btn>
+              <Btn primary href="/subscription">S&apos;abonner</Btn>
               <Btn href="#how" icon="↓">Voir comment ça marche</Btn>
             </div>
             <div style={{ marginTop: 22, display: "flex", alignItems: "center", gap: 18, color: "rgba(20,30,40,0.55)", fontSize: 14, flexWrap: "wrap" }}>
-              <span>✓ 14 jours offerts</span>
-              <span>✓ Sans CB</span>
+              <span>✓ Premier scan gratuit</span>
+              <span>✓ Sans engagement</span>
               <span>✓ Hébergement français</span>
             </div>
           </Reveal>
@@ -710,7 +710,7 @@ function Pricing() {
                   </div>
                 ))}
               </div>
-              <Btn primary href="/subscription">Démarrer 14 jours gratuits</Btn>
+              <Btn primary href="/subscription">S&apos;abonner</Btn>
               <div style={{ fontSize: 13, opacity: 0.65, textAlign: "center", marginTop: -8 }}>Sans carte bancaire · résiliable en 1 clic</div>
             </div>
           </Reveal>
@@ -780,12 +780,12 @@ function FinalCTA() {
         </Reveal>
         <Reveal delay={140}>
           <p style={{ fontSize: 22, lineHeight: 1.45, opacity: 0.7, maxWidth: 700, margin: "0 auto 36px" }}>
-            14 jours offerts, sans carte bancaire. Installation en 90 secondes — une URL, un mot-clé, et vous savez tout.
+            Installation en 90 secondes — une URL, un mot-clé, et vous savez tout ce qu&apos;on dit de vous.
           </p>
         </Reveal>
         <Reveal delay={200}>
           <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn primary href="/subscription">Démarrer l&apos;essai gratuit</Btn>
+            <Btn primary href="/subscription">S&apos;abonner</Btn>
             <Btn href="mailto:contact@reeact.io">Parler à l&apos;équipe</Btn>
           </div>
         </Reveal>

@@ -161,7 +161,7 @@ function Nav() {
       display: "flex", alignItems: "center", justifyContent: "space-between",
     }}>
       <a href="#hero" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}>
-        <Wordmark height={26} color={TEAL} />
+        <Wordmark height={40} color={TEAL} />
       </a>
 
       {/* Desktop links */}
@@ -546,7 +546,7 @@ function DashboardMock() {
       display: "grid", gridTemplateColumns: "220px 1fr", minHeight: 540,
     }} className="dash-mock">
       <aside style={{ background: "#fff", padding: "20px 16px", borderRight: `1px solid ${TEAL}10` }}>
-        <Wordmark height={22} color={TEAL} />
+        <Wordmark height={34} color={TEAL} />
         <div style={{ marginTop: 22, display: "flex", flexDirection: "column", gap: 4 }}>
           {[
             ["Tableau de bord", true],
@@ -796,7 +796,7 @@ function Footer() {
       <div style={{ maxWidth: 1400, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 40, paddingBottom: 48, borderBottom: "1px solid rgba(241,236,227,0.12)" }} className="footer-grid">
           <div>
-            <Wordmark height={36} color={CREAM} />
+            <Wordmark height={48} color={CREAM} />
             <p style={{ fontSize: 15, opacity: 0.65, lineHeight: 1.55, marginTop: 18, maxWidth: 320 }}>
               La plateforme française d&apos;e-réputation. Surveillance, analyse, intervention — au même endroit.
             </p>

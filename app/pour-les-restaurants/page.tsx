@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import SectorPageClient, { type SectorData } from "../components/SectorPageClient";
 
 export const metadata: Metadata = {
   title: "E-réputation pour restaurants | Gérez vos avis Google et TripAdvisor | Reeact",
@@ -18,110 +17,47 @@ export const metadata: Metadata = {
   },
 };
 
-const T=  "#27475A"; const TD = "#1B3645"; const O = "#FF7A3A"; const P = "#FBF8F2";
-const C = "#F1ECE3"; const I = "#15242D"; const G = "#3FB37F";
-const DI = '"Archivo Black", "Arial Black", sans-serif';
-const BO = '"Inter Tight", system-ui, sans-serif';
-const MO = '"JetBrains Mono", "Courier New", monospace';
-
-const PAINS = [
-  { icon: "⭐", title: "4,1 étoiles ou 4,8 : la différence peut remplir ou vider votre salle", body: "92 % des clients regardent les avis en ligne avant de choisir un restaurant. Une note en baisse de 0,2 point peut réduire votre trafic de 20 %. Chaque avis compte." },
-  { icon: "🤥", title: "Les faux avis de concurrents jaloux existent et font des dégâts", body: "Bourrage de faux avis négatifs, signalements massifs, comptes créés la veille : les attaques coordonnées contre les restaurants sont en forte hausse. Vous devez les détecter vite." },
-  { icon: "📱", title: "Un post TikTok ou Instagram peut devenir viral en quelques heures", body: "Une photo d'un plat raté, une histoire sur le service : le bad buzz gastronomique se propage à une vitesse que vous ne pouvez pas maîtriser sans alerte temps réel." },
-];
-
-const FEATURES = [
-  { icon: "🗺️", title: "Google Maps en temps réel", body: "Chaque nouvel avis sur votre fiche Google est détecté immédiatement. Positif, négatif ou neutre — vous êtes alerté avant vos concurrents." },
-  { icon: "🍽️", title: "TripAdvisor & The Fork", body: "Surveillance complète des plateformes gastronomiques. Ne laissez aucune critique sans réponse trop longtemps." },
-  { icon: "📊", title: "Score de réputation hebdomadaire", body: "Un indicateur synthétique qui mesure l'évolution de votre image. À partager avec votre équipe ou vos investisseurs." },
-  { icon: "🔔", title: "Alerte anti-crise", body: "Pic de mentions négatives ? Vous recevez une alerte prioritaire avant que la situation ne dégénère." },
-  { icon: "🤖", title: "Analyse IA du sentiment", body: "L'IA distingue la critique constructive, l'avis émotionnel et l'attaque coordonnée. Vous agissez avec discernement." },
-  { icon: "📄", title: "Export rapport mensuel", body: "Un PDF pro à présenter à vos associés, franchiseurs ou investisseurs. Score, tendances, mots-clés dominants." },
-];
-
-const FAQS = [
-  { q: "Reeact peut-il supprimer les avis négatifs ?", a: "Reeact surveille et vous alerte. Pour les contenus clairement diffamatoires ou faux, notre équipe d'intervention légale peut agir en votre nom pour demander la suppression auprès de la plateforme ou engager une procédure." },
-  { q: "Puis-je surveiller plusieurs établissements ?", a: "Oui. Vous ajoutez autant de mots-clés (nom de votre restaurant, adresse, chef) que nécessaire. Pour plusieurs établissements, le plan Agences & Avocats offre des dossiers illimités." },
-  { q: "Combien de temps pour voir les premiers résultats ?", a: "Le premier scan affiche vos mentions existantes en 2 à 3 minutes. Les nouvelles alertes arrivent en temps réel dès l'activation." },
-];
+const data: SectorData = {
+  sector: "Restaurateurs",
+  h1: ["Un faux avis peut remplir", "ou vider votre salle"],
+  subtitle: "Reeact surveille Google Maps, TripAdvisor et les réseaux sociaux 24h/24. Détectez les faux avis et réagissez avant que la crise ne coûte des couverts.",
+  ctaPrimary: "Démarrer gratuitement →",
+  ctaSecondary: "Scanner mon restaurant",
+  scannerUrl: "https://app.reeact.io/PublicScanner",
+  mentions: [
+    { src: "google.fr", txt: "\"Table exceptionnelle, service irréprochable\"", sent: "pos", age: "à l'instant", star: 5 },
+    { src: "tripadvisor", txt: "\"Cadre agréable, cuisine soignée\"", sent: "pos", age: "il y a 12 min", star: 4 },
+    { src: "google.fr", txt: "\"Insecte dans mon assiette, scandaleux\"", sent: "neg", age: "il y a 47 min", star: 1 },
+    { src: "instagram.com", txt: "Post viral : photo plat raté · 14K vues", sent: "neg", age: "il y a 2h" },
+    { src: "trustpilot", txt: "\"Service lent mais cuisine correcte\"", sent: "neu", age: "il y a 4h", star: 3 },
+  ],
+  painEyebrow: "CE QUE REDOUTENT LES RESTAURATEURS",
+  painTitle: ["La note qui vide", "votre salle."],
+  painLead: "92 % des clients lisent les avis avant de réserver. Une seule crise non détectée peut anéantir des mois de bouche-à-oreille.",
+  pains: [
+    { title: "4,1 ou 4,8 étoiles : la salle pleine ou vide.", body: "92 % des clients consultent les avis avant de réserver. Une note dégradée de 0,2 point peut réduire votre trafic de 20 %. Chaque étoile compte.", stat: "92% vérifient avant de réserver" },
+    { title: "Les faux avis de concurrents jaloux existent.", body: "Comptes créés la veille, adresses inconnues : les attaques coordonnées sont une réalité de la restauration. Vous devez les détecter et les signaler avant qu'elles s'accumulent.", stat: "Détection anomalie < 1h" },
+    { title: "Un post viral peut exploser en quelques heures.", body: "Une photo d'un plat raté, une histoire sur le service : le bad buzz gastronomique se propage exactement quand vous avez le plus de monde. Sans alerte, vous gérez trop tard.", stat: "Alerte immédiate" },
+  ],
+  featEyebrow: "FONCTIONNALITÉS",
+  featTitle: ["Conçu pour", "les restaurateurs exigeants."],
+  features: [
+    { symbol: "◉", tag: "TEMPS RÉEL", title: "Google Maps en direct", lead: "Chaque avis détecté immédiatement", body: "Positif, négatif ou neutre — vous êtes alerté avant vos concurrents. Répondez dans l'heure pour montrer votre réactivité." },
+    { symbol: "⊕", tag: "PLATEFORMES", title: "TripAdvisor & The Fork", lead: "Toutes les plateformes gastronomiques", body: "Surveillance complète des sites d'avis gastronomiques. Aucune critique ne reste sans réponse trop longtemps." },
+    { symbol: "◐", tag: "IA", title: "Analyse de sentiment IA", lead: "Avis légitime ou attaque coordonnée ?", body: "L'IA distingue la critique constructive, l'avis émotionnel et l'attaque organisée. Vous agissez avec discernement." },
+    { symbol: "✦", tag: "ALERTE", title: "Alerte anti-crise", lead: "Pic de négatif ? Vous le savez en 5 min", body: "Flux soudain d'avis négatifs, post viral, article de presse : l'alerte prioritaire vous permet d'activer votre réponse immédiatement." },
+    { symbol: "▦", tag: "DATA", title: "Score hebdomadaire", lead: "Évolution de votre image sur 7 jours", body: "Un indicateur synthétique à partager avec votre équipe ou vos investisseurs. Mesurez l'impact de vos actions." },
+    { symbol: "☷", tag: "RAPPORT", title: "Rapport mensuel PDF", lead: "Tendances, mots-clés, score", body: "Export professionnel à présenter à vos associés, franchiseur ou investisseurs. Score, tendances, mots-clés dominants." },
+  ],
+  faqs: [
+    { q: "Reeact peut-il supprimer les avis négatifs ?", a: "Reeact surveille et alerte. Pour les contenus clairement diffamatoires ou faux, notre équipe d'intervention légale peut agir pour demander la suppression." },
+    { q: "Puis-je surveiller plusieurs établissements ?", a: "Oui. Vous ajoutez autant de mots-clés que nécessaire. Pour plusieurs établissements, le plan Agences & Avocats offre des dossiers illimités." },
+    { q: "Combien de temps pour voir les premiers résultats ?", a: "Le premier scan affiche vos mentions existantes en 2 à 3 minutes. Les nouvelles alertes arrivent en temps réel dès l'activation." },
+  ],
+  ctaFinalTitle: "Votre salle mérite une réputation 5 étoiles.",
+  ctaFinalSub: "Essai gratuit · Aucune carte bancaire · Résultats en 2 minutes",
+};
 
 export default function PourLesRestaurants() {
-  return (
-    <>
-      <Nav />
-      <main style={{ background: P, fontFamily: BO }}>
-        <section style={{ background: `linear-gradient(160deg, ${TD} 0%, ${T} 60%, #2d5a70 100%)`, padding: "160px 40px 100px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, opacity: 0.03, backgroundImage: "linear-gradient(rgba(241,236,227,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(241,236,227,.5) 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
-          <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
-            <span style={{ display: "inline-block", fontFamily: MO, fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: O, border: `1px solid ${O}55`, padding: "6px 14px", borderRadius: 999, marginBottom: 28 }}>Restaurateurs</span>
-            <h1 style={{ fontFamily: DI, fontSize: "clamp(42px, 6vw, 88px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: C, margin: "0 0 28px", maxWidth: 900 }}>
-              Un faux avis peut remplir ou <span style={{ color: O }}>vider votre salle</span>
-            </h1>
-            <p style={{ fontSize: "clamp(17px, 2vw, 22px)", lineHeight: 1.5, color: "rgba(241,236,227,0.75)", maxWidth: 640, margin: "0 0 44px" }}>
-              Reeact surveille Google Maps, TripAdvisor, Instagram et la presse gastronomique 24h/24 pour que vous réagissiez avant que l'image de votre établissement ne soit abîmée.
-            </p>
-            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <a href="https://app.reeact.io/register" style={{ padding: "16px 30px", borderRadius: 999, background: O, color: "#fff", fontFamily: BO, fontWeight: 700, fontSize: 17, textDecoration: "none" }}>Démarrer gratuitement →</a>
-              <a href="https://app.reeact.io/PublicScanner" style={{ padding: "16px 30px", borderRadius: 999, border: "1.5px solid rgba(241,236,227,0.25)", color: C, fontFamily: BO, fontWeight: 600, fontSize: 17, textDecoration: "none" }}>Scanner mon restaurant</a>
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "96px 40px", maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: O }}>Les douleurs du secteur</span>
-          <h2 style={{ fontFamily: DI, fontSize: "clamp(36px, 4.5vw, 60px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: I, margin: "16px 0 48px", maxWidth: 700 }}>Ce que redoutent les restaurateurs</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 28 }}>
-            {PAINS.map((p, i) => (
-              <div key={i} style={{ background: "#fff", borderRadius: 20, padding: "32px 28px", border: `1px solid ${T}10`, boxShadow: "0 2px 20px -8px rgba(20,30,40,0.08)" }}>
-                <div style={{ fontSize: 36, marginBottom: 16 }}>{p.icon}</div>
-                <h3 style={{ fontFamily: DI, fontSize: 20, lineHeight: 1.1, color: TD, margin: "0 0 12px", letterSpacing: "-0.02em" }}>{p.title}</h3>
-                <p style={{ fontSize: 15, lineHeight: 1.6, color: `${T}99`, margin: 0 }}>{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section style={{ padding: "80px 40px", background: `${TD}06` }}>
-          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: T }}>Fonctionnalités</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: I, margin: "16px 0 48px", maxWidth: 700 }}>Tout ce qu&apos;un restaurateur exigeant attend</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
-              {FEATURES.map((f, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "24px 22px", border: `1px solid ${T}10` }}>
-                  <span style={{ fontSize: 28, display: "block", marginBottom: 12 }}>{f.icon}</span>
-                  <h3 style={{ fontFamily: BO, fontWeight: 700, fontSize: 16, color: TD, margin: "0 0 8px" }}>{f.title}</h3>
-                  <p style={{ fontSize: 14, lineHeight: 1.55, color: `${T}88`, margin: 0 }}>{f.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "80px 40px" }}>
-          <div style={{ maxWidth: 760, margin: "0 auto" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: T }}>FAQ</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(28px, 3.5vw, 48px)", lineHeight: 1, letterSpacing: "-0.03em", color: I, margin: "16px 0 40px" }}>Questions fréquentes</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              {FAQS.map((f, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "24px 26px", border: `1px solid ${T}10` }}>
-                  <h3 style={{ fontFamily: BO, fontWeight: 700, fontSize: 16, color: TD, margin: "0 0 10px" }}>{f.q}</h3>
-                  <p style={{ fontSize: 15, lineHeight: 1.6, color: `${T}88`, margin: 0 }}>{f.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "96px 40px" }}>
-          <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center", background: `linear-gradient(135deg, ${TD} 0%, ${T} 100%)`, borderRadius: 28, padding: "64px 48px" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: O, display: "block", marginBottom: 20 }}>Commencez dès aujourd&apos;hui</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: C, margin: "0 0 20px" }}>Votre salle mérite une réputation 5 étoiles</h2>
-            <p style={{ fontSize: 17, color: "rgba(241,236,227,0.7)", margin: "0 0 36px", lineHeight: 1.5 }}>Essai gratuit · Aucune carte bancaire · Résultats en 2 minutes</p>
-            <a href="https://app.reeact.io/register" style={{ padding: "16px 32px", borderRadius: 999, background: O, color: "#fff", fontFamily: BO, fontWeight: 700, fontSize: 17, textDecoration: "none" }}>Démarrer gratuitement →</a>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
+  return <SectorPageClient data={data} />;
 }

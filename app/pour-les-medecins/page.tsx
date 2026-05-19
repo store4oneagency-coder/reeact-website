@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import SectorPageClient, { type SectorData } from "../components/SectorPageClient";
 
 export const metadata: Metadata = {
   title: "E-réputation pour médecins et praticiens | Protégez votre réputation médicale | Reeact",
@@ -18,111 +17,47 @@ export const metadata: Metadata = {
   },
 };
 
-const T=  "#27475A"; const TD = "#1B3645"; const O = "#FF7A3A"; const P = "#FBF8F2";
-const C = "#F1ECE3"; const I = "#15242D";
-const DI = '"Archivo Black", "Arial Black", sans-serif';
-const BO = '"Inter Tight", system-ui, sans-serif';
-const MO = '"JetBrains Mono", "Courier New", monospace';
-
-const PAINS = [
-  { icon: "🏥", title: "Un avis Doctolib négatif peut faire fuir 30 nouveaux patients", body: "Plus de 60 % des patients choisissent leur médecin sur internet. Un commentaire mal géré sur Doctolib, Google ou un forum de santé coûte des mois de patientèle." },
-  { icon: "⚕️", title: "La diffamation par un patient existe et nuit durablement", body: "Certains patients franchissent la limite légale en publiant des accusations fausses ou exagérées. Ces contenus s'indexent sur Google et influencent de nouveaux patients avant même leur premier rendez-vous." },
-  { icon: "💻", title: "Les forums de patients alimentent des fausses rumeurs sans vous en informer", body: "PatientsLikeMe, forums spécialisés, groupes Facebook de patients : des discussions sur votre pratique peuvent exister depuis des années sans que vous le sachiez." },
-];
-
-const FEATURES = [
-  { icon: "📋", title: "Doctolib & Santé Navigo", body: "Chaque nouvel avis sur votre profil Doctolib est détecté et analysé. Répondez vite pour signaler votre présence et votre sérieux." },
-  { icon: "🔍", title: "Google & Maps", body: "Votre fiche Google My Business est surveillée. Avis, questions, mentions dans les résultats — rien n'est manqué." },
-  { icon: "💬", title: "Forums de patients et réseaux santé", body: "Surveillance des communautés de patients où se forment des opinions sur les praticiens — souvent bien avant qu'elles atteignent les grandes plateformes." },
-  { icon: "⚖️", title: "Détection de diffamation", body: "L'IA distingue la critique légitime du contenu potentiellement diffamatoire. Notre équipe peut engager une procédure de retrait." },
-  { icon: "📄", title: "Export de preuves légales", body: "Chaque contenu problématique est archivé avec URL, date et capture. Votre dossier juridique est constitué automatiquement." },
-  { icon: "📊", title: "Score de réputation médical", body: "Suivez l'évolution de votre image semaine après semaine. Mesurez l'impact de vos actions sur votre réputation." },
-];
-
-const FAQS = [
-  { q: "Reeact respecte-t-il le secret médical ?", a: "Reeact ne traite que des contenus publics — les avis, articles et posts que tout le monde peut lire. Aucune donnée patient n'est collectée ou traitée par la plateforme." },
-  { q: "Que faire face à un avis clairement diffamatoire ?", a: "Reeact archive les preuves et notre équipe peut engager une procédure de retrait auprès de la plateforme. Pour les cas graves, nous vous accompagnons dans la procédure judiciaire en lien avec un avocat spécialisé." },
-  { q: "Puis-je surveiller plusieurs spécialités ou plusieurs cabinets ?", a: "Oui. Vous ajoutez autant de mots-clés que nécessaire. Pour plusieurs praticiens ou plusieurs sites, le plan Agences & Avocats offre des dossiers illimités." },
-];
+const data: SectorData = {
+  sector: "Médecins & Praticiens",
+  h1: ["Un avis patient peut vider", "votre agenda"],
+  subtitle: "Reeact surveille Doctolib, Google, les forums patients et la presse médicale 24h/24. Détectez chaque contenu nuisible avant qu'il ne dévaste votre patientèle.",
+  ctaPrimary: "Démarrer gratuitement →",
+  ctaSecondary: "Scanner mon cabinet",
+  scannerUrl: "https://app.reeact.io/PublicScanner",
+  mentions: [
+    { src: "doctolib.fr", txt: "\"Médecin très à l'écoute, explications claires\"", sent: "pos", age: "il y a 7 min", star: 5 },
+    { src: "google.fr", txt: "\"Cabinet propre, personnel aimable, délai raisonnable\"", sent: "pos", age: "il y a 40 min", star: 4 },
+    { src: "doctolib.fr", txt: "\"Consultation de 5 minutes, aucune écoute, inacceptable\"", sent: "neg", age: "il y a 1h15", star: 1 },
+    { src: "forum-sante.fr", txt: "\"Le Dr X m'a prescrit quelque chose de dangereux\"", sent: "neg", age: "il y a 3h" },
+    { src: "google.fr", txt: "\"Très bonne expérience, je recommande ce praticien\"", sent: "pos", age: "il y a 6h", star: 5 },
+  ],
+  painEyebrow: "CE QUE REDOUTENT LES PRATICIENS",
+  painTitle: ["Ce que vos futurs patients", "lisent avant d'appeler."],
+  painLead: "Avant de prendre un rendez-vous, vos patients googlen votre nom. Un seul avis diffamatoire peut bloquer des dizaines de nouvelles consultations.",
+  pains: [
+    { title: "Un avis négatif sur Doctolib bloque les nouvelles prises de rendez-vous.", body: "92 % des patients consultent les avis avant de choisir un praticien. Un seul avis extrême — même faux — peut dépasser 10 avis positifs en termes d'impact sur la décision.", stat: "92% lisent avant de réserver" },
+    { title: "Les forums patients diffusent des informations fausses.", body: "Doctissimo, groupe Facebook, forum spécialisé : les témoignages de patients mécontents circulent loin de votre radar. Ils peuvent nuire à votre réputation sans que vous le sachiez.", stat: "200+ sources surveillées" },
+    { title: "La diffamation médicale est difficile à détecter sans outil.", body: "Un faux témoignage sur un forum, une accusation sur les réseaux : sans veille active, vous n'en entendez parler que lorsque les dégâts sont déjà faits. Reeact alerte dès la première mention.", stat: "Alerte en < 5 min" },
+  ],
+  featEyebrow: "FONCTIONNALITÉS",
+  featTitle: ["Conçu pour", "les praticiens qui soignent leur image."],
+  features: [
+    { symbol: "◉", tag: "TEMPS RÉEL", title: "Surveillance Doctolib & Google", lead: "Chaque avis patient détecté", body: "Positif, neutre ou négatif — chaque nouvel avis sur Doctolib, Google ou Healthgrades vous est remonté immédiatement." },
+    { symbol: "◐", tag: "IA", title: "Analyse de sentiment IA", lead: "Critique légitime ou diffamation ?", body: "Notre modèle distingue le témoignage d'un patient insatisfait de l'accusation diffamatoire. Vous agissez avec le bon niveau de réponse." },
+    { symbol: "▦", tag: "FORUMS", title: "Surveillance forums patients", lead: "Doctissimo, groupes Facebook, Reddit", body: "Les témoignages négatifs naissent souvent hors des plateformes officielles. Reeact surveille ces espaces oubliés en continu." },
+    { symbol: "✦", tag: "ALERTE", title: "Alertes instantanées", lead: "Contenu à risque → alerte e-mail", body: "Notifications immédiates dès qu'un contenu potentiellement nuisible est détecté. Configurez les seuils selon votre sensibilité." },
+    { symbol: "⚖", tag: "JURIDIQUE", title: "Intervention légale rapide", lead: "Diffamation médicale : on agit", body: "Notre cabinet partenaire peut demander le retrait d'un avis faux ou diffamatoire. Procédure LCEN ou mise en demeure selon le cas. Dès 500 € TTC." },
+    { symbol: "☷", tag: "RAPPORT", title: "Rapport de réputation mensuel", lead: "Score, tendances, sources", body: "Export PDF mensuel avec l'évolution de votre image et les mentions clés. À conserver dans votre dossier ou à partager avec votre équipe." },
+  ],
+  faqs: [
+    { q: "Puis-je surveiller plusieurs cabinets ou plusieurs praticiens ?", a: "Oui. Créez un dossier par praticien et par cabinet. Chaque dossier a ses propres mots-clés et son historique. Tout est centralisé dans un seul compte." },
+    { q: "Reeact peut-il faire retirer un faux avis sur Doctolib ?", a: "Reeact détecte et documente les avis suspects. Notre équipe légale peut ensuite initier un signalement auprès de Doctolib ou une procédure de retrait pour les contenus clairement diffamatoires." },
+    { q: "La surveillance est-elle conforme au secret médical ?", a: "Reeact surveille uniquement les contenus publics mentionnant votre nom ou votre cabinet. Aucune donnée patient n'est collectée. Le service est conforme au RGPD et hébergé en France." },
+  ],
+  ctaFinalTitle: "Protégez la réputation de votre cabinet médical.",
+  ctaFinalSub: "Essai gratuit · Aucune carte bancaire · Résultats en 2 minutes",
+};
 
 export default function PourLesMedecins() {
-  return (
-    <>
-      <Nav />
-      <main style={{ background: P, fontFamily: BO }}>
-        <section style={{ background: `linear-gradient(160deg, ${TD} 0%, ${T} 60%, #2d5a70 100%)`, padding: "160px 40px 100px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, opacity: 0.03, backgroundImage: "linear-gradient(rgba(241,236,227,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(241,236,227,.5) 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
-          <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
-            <span style={{ display: "inline-block", fontFamily: MO, fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: O, border: `1px solid ${O}55`, padding: "6px 14px", borderRadius: 999, marginBottom: 28 }}>Médecins &amp; Praticiens</span>
-            <h1 style={{ fontFamily: DI, fontSize: "clamp(42px, 6vw, 88px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: C, margin: "0 0 28px", maxWidth: 900 }}>
-              Un avis Doctolib négatif peut vous coûter{" "}
-              <span style={{ color: O }}>30 nouveaux patients</span>
-            </h1>
-            <p style={{ fontSize: "clamp(17px, 2vw, 22px)", lineHeight: 1.5, color: "rgba(241,236,227,0.75)", maxWidth: 640, margin: "0 0 44px" }}>
-              Reeact surveille Doctolib, Google, les forums de patients et la presse médicale en temps réel. Chaque avis, chaque mention — vous êtes alerté avant vos confrères.
-            </p>
-            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <a href="https://app.reeact.io/register" style={{ padding: "16px 30px", borderRadius: 999, background: O, color: "#fff", fontFamily: BO, fontWeight: 700, fontSize: 17, textDecoration: "none" }}>Démarrer gratuitement →</a>
-              <a href="https://app.reeact.io/PublicScanner" style={{ padding: "16px 30px", borderRadius: 999, border: "1.5px solid rgba(241,236,227,0.25)", color: C, fontFamily: BO, fontWeight: 600, fontSize: 17, textDecoration: "none" }}>Scanner mon nom</a>
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "96px 40px", maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: O }}>Les douleurs du secteur</span>
-          <h2 style={{ fontFamily: DI, fontSize: "clamp(36px, 4.5vw, 60px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: I, margin: "16px 0 48px", maxWidth: 700 }}>Ce que redoutent les praticiens</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 28 }}>
-            {PAINS.map((p, i) => (
-              <div key={i} style={{ background: "#fff", borderRadius: 20, padding: "32px 28px", border: `1px solid ${T}10`, boxShadow: "0 2px 20px -8px rgba(20,30,40,0.08)" }}>
-                <div style={{ fontSize: 36, marginBottom: 16 }}>{p.icon}</div>
-                <h3 style={{ fontFamily: DI, fontSize: 20, lineHeight: 1.1, color: TD, margin: "0 0 12px", letterSpacing: "-0.02em" }}>{p.title}</h3>
-                <p style={{ fontSize: 15, lineHeight: 1.6, color: `${T}99`, margin: 0 }}>{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section style={{ padding: "80px 40px", background: `${TD}06` }}>
-          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: T }}>Fonctionnalités</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: I, margin: "16px 0 48px", maxWidth: 700 }}>Conçu pour les professionnels de santé</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
-              {FEATURES.map((f, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "24px 22px", border: `1px solid ${T}10` }}>
-                  <span style={{ fontSize: 28, display: "block", marginBottom: 12 }}>{f.icon}</span>
-                  <h3 style={{ fontFamily: BO, fontWeight: 700, fontSize: 16, color: TD, margin: "0 0 8px" }}>{f.title}</h3>
-                  <p style={{ fontSize: 14, lineHeight: 1.55, color: `${T}88`, margin: 0 }}>{f.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "80px 40px" }}>
-          <div style={{ maxWidth: 760, margin: "0 auto" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: T }}>FAQ</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(28px, 3.5vw, 48px)", lineHeight: 1, letterSpacing: "-0.03em", color: I, margin: "16px 0 40px" }}>Questions fréquentes</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              {FAQS.map((f, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "24px 26px", border: `1px solid ${T}10` }}>
-                  <h3 style={{ fontFamily: BO, fontWeight: 700, fontSize: 16, color: TD, margin: "0 0 10px" }}>{f.q}</h3>
-                  <p style={{ fontSize: 15, lineHeight: 1.6, color: `${T}88`, margin: 0 }}>{f.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "96px 40px" }}>
-          <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center", background: `linear-gradient(135deg, ${TD} 0%, ${T} 100%)`, borderRadius: 28, padding: "64px 48px" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: O, display: "block", marginBottom: 20 }}>Protégez votre pratique</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: C, margin: "0 0 20px" }}>Votre réputation médicale mérite une protection sérieuse</h2>
-            <p style={{ fontSize: 17, color: "rgba(241,236,227,0.7)", margin: "0 0 36px", lineHeight: 1.5 }}>Essai gratuit · Aucune carte bancaire · Résultats en 2 minutes</p>
-            <a href="https://app.reeact.io/register" style={{ padding: "16px 32px", borderRadius: 999, background: O, color: "#fff", fontFamily: BO, fontWeight: 700, fontSize: 17, textDecoration: "none" }}>Démarrer gratuitement →</a>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
+  return <SectorPageClient data={data} />;
 }

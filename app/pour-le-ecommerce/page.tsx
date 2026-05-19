@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import SectorPageClient, { type SectorData } from "../components/SectorPageClient";
 
 export const metadata: Metadata = {
   title: "E-réputation pour e-commerce | Gérez vos avis Trustpilot et Google Shopping | Reeact",
@@ -18,111 +17,47 @@ export const metadata: Metadata = {
   },
 };
 
-const T=  "#27475A"; const TD = "#1B3645"; const O = "#FF7A3A"; const P = "#FBF8F2";
-const C = "#F1ECE3"; const I = "#15242D";
-const DI = '"Archivo Black", "Arial Black", sans-serif';
-const BO = '"Inter Tight", system-ui, sans-serif';
-const MO = '"JetBrains Mono", "Courier New", monospace';
-
-const PAINS = [
-  { icon: "⭐", title: "Une étoile de moins sur Trustpilot = -15 % de taux de conversion", body: "Les acheteurs en ligne sont les consommateurs les plus exigeants qui soient. Une note dégradée sur Trustpilot, Avis Vérifiés ou Google Shopping coûte des milliers d'euros de CA chaque mois." },
-  { icon: "🤥", title: "Les concurrents font poster de faux avis négatifs", body: "Comptes créés la veille, adresses inconnues, commandes jamais passées : les attaques d'avis coordonnés sont une réalité de l'e-commerce. Vous devez les détecter et les signaler rapidement." },
-  { icon: "💥", title: "Un bad buzz sur les réseaux peut exploser pendant une promo", body: "Black Friday, soldes, sortie produit : les mauvaises nouvelles circulent exactement quand vous avez le plus de trafic. Sans alerte temps réel, vous payez la crise au prix fort." },
-];
-
-const FEATURES = [
-  { icon: "⭐", title: "Trustpilot & Avis Vérifiés", body: "Chaque nouvel avis est détecté et analysé. Positif à amplifier ou négatif à traiter — vous le savez en temps réel." },
-  { icon: "🛒", title: "Google Shopping & Maps", body: "Vos fiches produits et votre fiche établissement sont surveillées. Aucun avis négatif ne passe inaperçu." },
-  { icon: "📱", title: "Réseaux sociaux", body: "Instagram, TikTok, Facebook, Twitter/X — chaque mention de votre marque est trackée et analysée par l'IA." },
-  { icon: "📦", title: "Surveillance des retours produits", body: "Pics de mentions liées à des problèmes de livraison ou de qualité ? Une alerte vous permet de réagir avant que la vague d'avis négatifs n'arrive." },
-  { icon: "🔍", title: "Détection d'attaques concurrentes", body: "L'IA identifie les pics anormaux d'avis négatifs — signature d'une attaque coordonnée — et vous alerte pour déclencher la procédure de signalement." },
-  { icon: "📊", title: "Dashboard conversion & réputation", body: "Corrélation entre score de réputation et performances commerciales. Montrez à vos associés que l'image impacte directement le CA." },
-];
-
-const FAQS = [
-  { q: "Reeact peut-il demander la suppression des faux avis ?", a: "Oui. Notre équipe peut engager des procédures de signalement auprès de Trustpilot, Google et les autres plateformes. Pour les cas graves (campagne organisée), une intervention légale est disponible." },
-  { q: "Puis-je surveiller plusieurs marques ou boutiques ?", a: "Oui. Vous ajoutez autant de mots-clés que nécessaire. Pour plusieurs boutiques ou marques distinctes, le plan Agences permet des dossiers illimités." },
-  { q: "Combien de sources sont surveillées ?", a: "Plus de 20 sources : Google, Trustpilot, Avis Vérifiés, Amazon, TikTok, Instagram, Facebook, forums de consommateurs, comparateurs de prix et presse." },
-];
+const data: SectorData = {
+  sector: "E-commerce & Boutiques en ligne",
+  h1: ["Votre note Trustpilot", "décide de vos ventes"],
+  subtitle: "Reeact surveille Trustpilot, Google Shopping, les réseaux et les forums 24h/24. Détectez les attaques de concurrents et préservez votre taux de conversion.",
+  ctaPrimary: "Démarrer gratuitement →",
+  ctaSecondary: "Scanner ma boutique",
+  scannerUrl: "https://app.reeact.io/PublicScanner",
+  mentions: [
+    { src: "trustpilot", txt: "\"Livraison rapide, produit conforme — parfait\"", sent: "pos", age: "il y a 4 min", star: 5 },
+    { src: "google.fr", txt: "\"Très bon rapport qualité/prix, je recommande\"", sent: "pos", age: "il y a 28 min", star: 4 },
+    { src: "trustpilot", txt: "\"Colis jamais reçu, service client inexistant\"", sent: "neg", age: "il y a 1h10", star: 1 },
+    { src: "twitter.com", txt: "Thread : arnaque ou réelle boutique ? 87 RTs", sent: "neg", age: "il y a 3h" },
+    { src: "reddit.com", txt: "\"Produit reçu non conforme à la description\"", sent: "neg", age: "il y a 6h", star: 2 },
+  ],
+  painEyebrow: "CE QUE REDOUTENT LES E-COMMERÇANTS",
+  painTitle: ["Une note dégradée", "coupe vos conversions."],
+  painLead: "Les acheteurs en ligne décident en 8 secondes. Une mauvaise note ou une polémique sur les réseaux peut effacer des mois de SEA et de SEO.",
+  pains: [
+    { title: "Une chute de 0,5 étoile sur Trustpilot coûte 15% de conversions.", body: "Les acheteurs en ligne lisent les avis avant d'acheter. Une dégradation de votre note moyenne, même légère, se traduit directement en panier abandonné et en ventes perdues.", stat: "-15% conversions / -0,5 étoile" },
+    { title: "Les attaques de concurrents sont réelles et coordonnées.", body: "Comptes créés la veille, avis négatifs groupés sur 24h : les campagnes de dénigrement existent dans le e-commerce. Reeact détecte les anomalies de flux avant qu'elles s'accumulent.", stat: "Anomalie détectée < 1h" },
+    { title: "Un thread viral peut bloquer une campagne entière.", body: "Un post Twitter sur une livraison ratée, un thread Reddit sur votre SAV : le bad buzz e-commerce se propage exactement lors de vos pics de trafic. Sans alerte, vous gérez trop tard.", stat: "Alerte < 5 min" },
+  ],
+  featEyebrow: "FONCTIONNALITÉS",
+  featTitle: ["Conçu pour", "les marchands qui vendent plus."],
+  features: [
+    { symbol: "◉", tag: "TEMPS RÉEL", title: "Trustpilot & Google Shopping", lead: "Chaque avis détecté immédiatement", body: "Positif, négatif ou suspect — vous êtes alerté en temps réel. Répondez aux avis critiques avant que votre note ne dégringole." },
+    { symbol: "◐", tag: "IA", title: "Détection faux avis IA", lead: "Avis authentique ou attaque ?", body: "Notre modèle identifie les patterns d'avis coordonnés : comptes récents, timing suspect, formulations répétitives. Signalez en un clic." },
+    { symbol: "✦", tag: "ALERTE", title: "Alerte pic négatif", lead: "Flux suspect ? Alerte prioritaire", body: "Dès qu'un pic d'avis négatifs anormal est détecté, vous recevez une alerte avec les données brutes. Activez votre réponse avant que ça s'amplifie." },
+    { symbol: "▦", tag: "RÉSEAUX", title: "Surveillance réseaux & forums", lead: "Twitter, Reddit, groupes Facebook", body: "Les polémiques e-commerce naissent souvent hors des plateformes d'avis. Reeact surveille aussi les réseaux et les forums de consommateurs." },
+    { symbol: "⊕", tag: "CONCURRENTS", title: "Veille concurrentielle", lead: "Surveillez aussi vos rivaux", body: "Ajoutez les noms de vos concurrents comme mots-clés. Suivez leur réputation et anticipez les mouvements de marché." },
+    { symbol: "☷", tag: "RAPPORT", title: "Rapport mensuel e-commerce", lead: "Score, tendances, mots-clés clients", body: "Export mensuel avec les indicateurs clés de votre image marchande. À partager avec votre équipe marketing ou vos investisseurs." },
+  ],
+  faqs: [
+    { q: "Reeact peut-il m'aider à signaler des faux avis sur Trustpilot ?", a: "Reeact identifie les avis suspects et vous fournit les données pour étayer votre signalement auprès de Trustpilot ou Google. Notre équipe légale peut intervenir pour les cas les plus graves." },
+    { q: "Puis-je surveiller plusieurs boutiques en même temps ?", a: "Oui. Chaque boutique peut avoir son propre dossier avec ses mots-clés et ses sources. Le plan Agences & Avocats est idéal pour gérer plusieurs marques." },
+    { q: "Reeact surveille-t-il aussi Amazon et les marketplaces ?", a: "Nous surveillons les sources web publiques. Les avis Amazon sont accessibles via leur API publique — nous pouvons les intégrer sur demande pour les plans avancés." },
+  ],
+  ctaFinalTitle: "Protégez vos ventes et votre réputation en ligne.",
+  ctaFinalSub: "Essai gratuit · Aucune carte bancaire · Résultats en 2 minutes",
+};
 
 export default function PourLeEcommerce() {
-  return (
-    <>
-      <Nav />
-      <main style={{ background: P, fontFamily: BO }}>
-        <section style={{ background: `linear-gradient(160deg, ${TD} 0%, ${T} 60%, #2d5a70 100%)`, padding: "160px 40px 100px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, opacity: 0.03, backgroundImage: "linear-gradient(rgba(241,236,227,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(241,236,227,.5) 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
-          <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
-            <span style={{ display: "inline-block", fontFamily: MO, fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: O, border: `1px solid ${O}55`, padding: "6px 14px", borderRadius: 999, marginBottom: 28 }}>E-commerce &amp; Boutiques en ligne</span>
-            <h1 style={{ fontFamily: DI, fontSize: "clamp(42px, 6vw, 88px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: C, margin: "0 0 28px", maxWidth: 900 }}>
-              Une étoile de moins sur Trustpilot,{" "}
-              <span style={{ color: O }}>c&apos;est -15 % de taux de conversion</span>
-            </h1>
-            <p style={{ fontSize: "clamp(17px, 2vw, 22px)", lineHeight: 1.5, color: "rgba(241,236,227,0.75)", maxWidth: 640, margin: "0 0 44px" }}>
-              Reeact surveille tous vos canaux d&apos;avis en temps réel. Chaque attaque de concurrent, chaque mauvais avis viral est détecté avant d&apos;impacter vos ventes.
-            </p>
-            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <a href="https://app.reeact.io/register" style={{ padding: "16px 30px", borderRadius: 999, background: O, color: "#fff", fontFamily: BO, fontWeight: 700, fontSize: 17, textDecoration: "none" }}>Démarrer gratuitement →</a>
-              <a href="https://app.reeact.io/PublicScanner" style={{ padding: "16px 30px", borderRadius: 999, border: "1.5px solid rgba(241,236,227,0.25)", color: C, fontFamily: BO, fontWeight: 600, fontSize: 17, textDecoration: "none" }}>Scanner ma boutique</a>
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "96px 40px", maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: O }}>Les douleurs du secteur</span>
-          <h2 style={{ fontFamily: DI, fontSize: "clamp(36px, 4.5vw, 60px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: I, margin: "16px 0 48px", maxWidth: 700 }}>Ce que redoutent les e-commerçants</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 28 }}>
-            {PAINS.map((p, i) => (
-              <div key={i} style={{ background: "#fff", borderRadius: 20, padding: "32px 28px", border: `1px solid ${T}10`, boxShadow: "0 2px 20px -8px rgba(20,30,40,0.08)" }}>
-                <div style={{ fontSize: 36, marginBottom: 16 }}>{p.icon}</div>
-                <h3 style={{ fontFamily: DI, fontSize: 20, lineHeight: 1.1, color: TD, margin: "0 0 12px", letterSpacing: "-0.02em" }}>{p.title}</h3>
-                <p style={{ fontSize: 15, lineHeight: 1.6, color: `${T}99`, margin: 0 }}>{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section style={{ padding: "80px 40px", background: `${TD}06` }}>
-          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: T }}>Fonctionnalités</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: I, margin: "16px 0 48px", maxWidth: 700 }}>Conçu pour les marchands qui vendent sérieusement</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
-              {FEATURES.map((f, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "24px 22px", border: `1px solid ${T}10` }}>
-                  <span style={{ fontSize: 28, display: "block", marginBottom: 12 }}>{f.icon}</span>
-                  <h3 style={{ fontFamily: BO, fontWeight: 700, fontSize: 16, color: TD, margin: "0 0 8px" }}>{f.title}</h3>
-                  <p style={{ fontSize: 14, lineHeight: 1.55, color: `${T}88`, margin: 0 }}>{f.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "80px 40px" }}>
-          <div style={{ maxWidth: 760, margin: "0 auto" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: T }}>FAQ</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(28px, 3.5vw, 48px)", lineHeight: 1, letterSpacing: "-0.03em", color: I, margin: "16px 0 40px" }}>Questions fréquentes</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              {FAQS.map((f, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "24px 26px", border: `1px solid ${T}10` }}>
-                  <h3 style={{ fontFamily: BO, fontWeight: 700, fontSize: 16, color: TD, margin: "0 0 10px" }}>{f.q}</h3>
-                  <p style={{ fontSize: 15, lineHeight: 1.6, color: `${T}88`, margin: 0 }}>{f.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "96px 40px" }}>
-          <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center", background: `linear-gradient(135deg, ${TD} 0%, ${T} 100%)`, borderRadius: 28, padding: "64px 48px" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: O, display: "block", marginBottom: 20 }}>Protégez vos ventes</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: C, margin: "0 0 20px" }}>Votre boutique mérite une réputation 5 étoiles</h2>
-            <p style={{ fontSize: 17, color: "rgba(241,236,227,0.7)", margin: "0 0 36px", lineHeight: 1.5 }}>Essai gratuit · Aucune carte bancaire · Résultats en 2 minutes</p>
-            <a href="https://app.reeact.io/register" style={{ padding: "16px 32px", borderRadius: 999, background: O, color: "#fff", fontFamily: BO, fontWeight: 700, fontSize: 17, textDecoration: "none" }}>Démarrer gratuitement →</a>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
+  return <SectorPageClient data={data} />;
 }

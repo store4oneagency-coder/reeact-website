@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import SectorPageClient, { type SectorData } from "../components/SectorPageClient";
 
 export const metadata: Metadata = {
   title: "E-réputation pour cliniques esthétiques | Protégez votre image médicale | Reeact",
@@ -18,111 +17,47 @@ export const metadata: Metadata = {
   },
 };
 
-const T=  "#27475A"; const TD = "#1B3645"; const O = "#FF7A3A"; const P = "#FBF8F2";
-const C = "#F1ECE3"; const I = "#15242D";
-const DI = '"Archivo Black", "Arial Black", sans-serif';
-const BO = '"Inter Tight", system-ui, sans-serif';
-const MO = '"JetBrains Mono", "Courier New", monospace';
+const data: SectorData = {
+  sector: "Cliniques esthétiques",
+  h1: ["Un bad buzz médical efface", "10 ans de réputation"],
+  subtitle: "Reeact surveille Google, Instagram, les forums beauté et la presse santé 24h/24. Détectez chaque mention avant qu'elle ne dévaste votre patientèle.",
+  ctaPrimary: "Démarrer gratuitement →",
+  ctaSecondary: "Scanner ma clinique",
+  scannerUrl: "https://app.reeact.io/PublicScanner",
+  mentions: [
+    { src: "google.fr", txt: "\"Résultat naturel, chirurgien à l'écoute\"", sent: "pos", age: "il y a 8 min", star: 5 },
+    { src: "instagram.com", txt: "Before/after partagé avec votre tag — 6,2K likes", sent: "pos", age: "il y a 35 min" },
+    { src: "doctissimo.fr", txt: "\"Résultat catastrophique, rhinoplastie ratée\"", sent: "neg", age: "il y a 1h30" },
+    { src: "google.fr", txt: "\"Consultation bâclée, très déçu de l'accueil\"", sent: "neg", age: "il y a 3h", star: 1 },
+    { src: "presse-medicale.fr", txt: "Reportage : les dérives de la chirurgie esthétique low-cost", sent: "neg", age: "il y a 5h" },
+  ],
+  painEyebrow: "CE QUE REDOUTENT LES CLINIQUES",
+  painTitle: ["La confiance médicale", "se brise en un post."],
+  painLead: "En médecine esthétique, la réputation est tout. Un forum, une story Instagram négative, un article de presse — et des mois de patientèle s'évaporent.",
+  pains: [
+    { title: "Un avant/après qui tourne mal sur Instagram.", body: "Les réseaux sociaux amplifient les mauvais résultats à une vitesse incontrôlable. Une seule photo non consentie ou un témoignage viral peut déclencher une crise en quelques heures.", stat: "Détection post viral < 30 min" },
+    { title: "Les forums beauté sont des pièges à réputation.", body: "Doctissimo, forums esthétiques, groupes Facebook privés : les patients insatisfaits échangent loin de votre radar. Reeact surveille ces espaces souvent oubliés.", stat: "200+ sources surveillées" },
+    { title: "Un article de presse peut tout bloquer.", body: "Santé Magazine, Femme Actuelle, reportages TV : un seul article négatif peut couper vos nouvelles demandes de consultation pendant des mois. Vous devez le savoir dès la publication.", stat: "Alerte presse immédiate" },
+  ],
+  featEyebrow: "FONCTIONNALITÉS",
+  featTitle: ["Conçu pour", "les professionnels de la beauté médicale."],
+  features: [
+    { symbol: "◉", tag: "TEMPS RÉEL", title: "Surveillance Instagram & TikTok", lead: "Posts, stories, tags en direct", body: "Chaque mention de votre clinique sur les réseaux visuels est détectée — tag, mention, story. Réagissez avant que ça devienne viral." },
+    { symbol: "◐", tag: "IA", title: "Analyse de sentiment IA", lead: "Témoignage ou attaque organisée ?", body: "L'IA distingue l'avis émotionnel post-opératoire de la campagne de dénigrement coordonnée. Vous agissez avec discernement." },
+    { symbol: "▦", tag: "FORUMS", title: "Surveillance forums beauté", lead: "Doctissimo, groupes Facebook, Reddit", body: "Les forums sont souvent le premier endroit où un patient insatisfait s'exprime. Reeact surveille ces espaces loin de votre radar habituel." },
+    { symbol: "✦", tag: "ALERTE", title: "Alerte presse santé", lead: "Article publié ? Vous le savez en 5 min", body: "Presse nationale, régionale, blogs santé et beauté : chaque publication mentionnant votre établissement déclenche une alerte immédiate." },
+    { symbol: "⚖", tag: "JURIDIQUE", title: "Intervention légale rapide", lead: "Contenu diffamatoire ? On agit.", body: "Pour les témoignages faux ou diffamatoires, notre cabinet partenaire peut demander le retrait ou engager une procédure. Dès 500 € TTC." },
+    { symbol: "☷", tag: "RAPPORT", title: "Rapport de réputation clinique", lead: "Score, tendances, mots-clés patients", body: "Export mensuel avec les indicateurs clés de votre image. À partager avec votre direction ou vos investisseurs." },
+  ],
+  faqs: [
+    { q: "Peut-on surveiller plusieurs praticiens d'une même clinique ?", a: "Oui. Vous créez un mot-clé par praticien et un pour la clinique. Tous les résultats sont centralisés dans un seul tableau de bord." },
+    { q: "Reeact couvre-t-il les groupes Facebook et forums privés ?", a: "Reeact surveille les contenus publics. Pour les groupes entièrement privés, la surveillance est limitée. Nous couvrons en revanche tous les forums et pages publiques." },
+    { q: "Puis-je faire retirer un témoignage faux sur Google ?", a: "Notre équipe d'intervention légale peut initier une procédure de retrait. Pour les avis Google, nous accompagnons le signalement et, si nécessaire, la mise en demeure." },
+  ],
+  ctaFinalTitle: "Protégez la réputation de votre clinique.",
+  ctaFinalSub: "Essai gratuit · Aucune carte bancaire · Résultats en 2 minutes",
+};
 
-const PAINS = [
-  { icon: "💉", title: "Un avis de patient mécontent sur Instagram peut devenir viral", body: "Un \"résultat raté\" photographié et partagé sur les réseaux peut générer des milliers de vues en quelques heures. Dans un secteur aussi visuel que l'esthétique, l'image se joue en ligne." },
-  { icon: "📝", title: "Les forums spécialisés cumulent des témoignages pendant des années", body: "Forum-chirurgie, beauté.net, RealSelf : ces plateformes indexées par Google accumulent des avis qui restent visibles pendant des années. Vous devez les surveiller en continu." },
-  { icon: "⚕️", title: "La frontière entre avis négatif et diffamation est vite franchie", body: "Un patient mécontent peut dépasser les limites légales. Sans surveillance, ces contenus s'indexent et nuisent à de nouveaux patients potentiels avant que vous ne les ayez vus." },
-];
-
-const FEATURES = [
-  { icon: "📱", title: "Instagram & TikTok surveillés", body: "Les réseaux visuels sont le terrain de jeu des crises esthétiques. Chaque mention de votre clinique ou de votre nom est détectée." },
-  { icon: "💬", title: "Forums médicaux & beauté", body: "Surveillance des forums spécialisés où les patientes échangent sur les praticiens et les résultats." },
-  { icon: "⭐", title: "Google & Doctolib", body: "Alertes sur chaque nouvel avis. Répondez rapidement, avant que l'algorithme n'en tienne compte négativement." },
-  { icon: "🔒", title: "Détection de contenu diffamatoire", body: "L'IA distingue l'avis négatif légitime du contenu diffamatoire. Notre équipe peut engager des procédures de retrait." },
-  { icon: "📄", title: "Export de preuves", body: "Constituez votre dossier de preuves en cas de procédure. Chaque mention est archivée avec URL et date." },
-  { icon: "📊", title: "Score de réputation médical", body: "Un indicateur synthétique de l'image de votre clinique, à surveiller chaque semaine." },
-];
-
-const FAQS = [
-  { q: "Reeact respecte-t-il le secret médical et le RGPD ?", a: "Reeact surveille uniquement les contenus publics sur internet — ce qui est déjà visible de tous. Aucune donnée patient n'est traitée. La plateforme est conforme RGPD." },
-  { q: "Peut-on surveiller plusieurs praticiens au sein de la même clinique ?", a: "Oui. Vous ajoutez autant de mots-clés que nécessaire : nom de la clinique, noms des praticiens, spécialités. Le plan Agences permet des dossiers illimités." },
-  { q: "Que faire si un contenu est clairement diffamatoire ?", a: "Reeact peut déclencher une procédure d'intervention légale. Notre équipe vous accompagne pour la demande de retrait amiable ou la procédure judiciaire si nécessaire." },
-];
-
-export default function PourLesCliniques() {
-  return (
-    <>
-      <Nav />
-      <main style={{ background: P, fontFamily: BO }}>
-        <section style={{ background: `linear-gradient(160deg, ${TD} 0%, ${T} 60%, #2d5a70 100%)`, padding: "160px 40px 100px", position: "relative", overflow: "hidden" }}>
-          <div style={{ position: "absolute", inset: 0, opacity: 0.03, backgroundImage: "linear-gradient(rgba(241,236,227,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(241,236,227,.5) 1px,transparent 1px)", backgroundSize: "48px 48px" }} />
-          <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
-            <span style={{ display: "inline-block", fontFamily: MO, fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: O, border: `1px solid ${O}55`, padding: "6px 14px", borderRadius: 999, marginBottom: 28 }}>Cliniques esthétiques &amp; Médecine esthétique</span>
-            <h1 style={{ fontFamily: DI, fontSize: "clamp(42px, 6vw, 88px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: C, margin: "0 0 28px", maxWidth: 900 }}>
-              Un bad buzz médical peut effacer{" "}
-              <span style={{ color: O }}>une réputation construite en 10 ans</span>
-            </h1>
-            <p style={{ fontSize: "clamp(17px, 2vw, 22px)", lineHeight: 1.5, color: "rgba(241,236,227,0.75)", maxWidth: 640, margin: "0 0 44px" }}>
-              Instagram, forums spécialisés, Google — Reeact surveille chaque mention de votre clinique et vous alerte avant qu&apos;un avis négatif ne devienne une crise.
-            </p>
-            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <a href="https://app.reeact.io/register" style={{ padding: "16px 30px", borderRadius: 999, background: O, color: "#fff", fontFamily: BO, fontWeight: 700, fontSize: 17, textDecoration: "none" }}>Démarrer gratuitement →</a>
-              <a href="https://app.reeact.io/PublicScanner" style={{ padding: "16px 30px", borderRadius: 999, border: "1.5px solid rgba(241,236,227,0.25)", color: C, fontFamily: BO, fontWeight: 600, fontSize: 17, textDecoration: "none" }}>Scanner ma clinique</a>
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "96px 40px", maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: O }}>Les douleurs du secteur</span>
-          <h2 style={{ fontFamily: DI, fontSize: "clamp(36px, 4.5vw, 60px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: I, margin: "16px 0 48px", maxWidth: 700 }}>Ce que craignent les praticiens</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 28 }}>
-            {PAINS.map((p, i) => (
-              <div key={i} style={{ background: "#fff", borderRadius: 20, padding: "32px 28px", border: `1px solid ${T}10`, boxShadow: "0 2px 20px -8px rgba(20,30,40,0.08)" }}>
-                <div style={{ fontSize: 36, marginBottom: 16 }}>{p.icon}</div>
-                <h3 style={{ fontFamily: DI, fontSize: 20, lineHeight: 1.1, color: TD, margin: "0 0 12px", letterSpacing: "-0.02em" }}>{p.title}</h3>
-                <p style={{ fontSize: 15, lineHeight: 1.6, color: `${T}99`, margin: 0 }}>{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section style={{ padding: "80px 40px", background: `${TD}06` }}>
-          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: T }}>Fonctionnalités</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: I, margin: "16px 0 48px", maxWidth: 700 }}>Une protection adaptée au secteur médical</h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
-              {FEATURES.map((f, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "24px 22px", border: `1px solid ${T}10` }}>
-                  <span style={{ fontSize: 28, display: "block", marginBottom: 12 }}>{f.icon}</span>
-                  <h3 style={{ fontFamily: BO, fontWeight: 700, fontSize: 16, color: TD, margin: "0 0 8px" }}>{f.title}</h3>
-                  <p style={{ fontSize: 14, lineHeight: 1.55, color: `${T}88`, margin: 0 }}>{f.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "80px 40px" }}>
-          <div style={{ maxWidth: 760, margin: "0 auto" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: T }}>FAQ</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(28px, 3.5vw, 48px)", lineHeight: 1, letterSpacing: "-0.03em", color: I, margin: "16px 0 40px" }}>Questions fréquentes</h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              {FAQS.map((f, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "24px 26px", border: `1px solid ${T}10` }}>
-                  <h3 style={{ fontFamily: BO, fontWeight: 700, fontSize: 16, color: TD, margin: "0 0 10px" }}>{f.q}</h3>
-                  <p style={{ fontSize: 15, lineHeight: 1.6, color: `${T}88`, margin: 0 }}>{f.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section style={{ padding: "96px 40px" }}>
-          <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center", background: `linear-gradient(135deg, ${TD} 0%, ${T} 100%)`, borderRadius: 28, padding: "64px 48px" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: O, display: "block", marginBottom: 20 }}>Protégez votre pratique</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: C, margin: "0 0 20px" }}>Votre expertise mérite une réputation à sa hauteur</h2>
-            <p style={{ fontSize: 17, color: "rgba(241,236,227,0.7)", margin: "0 0 36px", lineHeight: 1.5 }}>Essai gratuit · Aucune carte bancaire · Résultats en 2 minutes</p>
-            <a href="https://app.reeact.io/register" style={{ padding: "16px 32px", borderRadius: 999, background: O, color: "#fff", fontFamily: BO, fontWeight: 700, fontSize: 17, textDecoration: "none" }}>Démarrer gratuitement →</a>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
-  );
+export default function PourLesCliniquesEsthetiques() {
+  return <SectorPageClient data={data} />;
 }

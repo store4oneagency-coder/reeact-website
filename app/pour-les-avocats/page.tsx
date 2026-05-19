@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import SectorPageClient, { type SectorData } from "../components/SectorPageClient";
 
 export const metadata: Metadata = {
   title: "E-réputation pour avocats et cabinets juridiques | Reeact",
@@ -18,252 +17,58 @@ export const metadata: Metadata = {
   },
 };
 
-const T  = "#27475A";
-const TD = "#1B3645";
-const O  = "#FF7A3A";
-const G  = "#3FB37F";
-const P  = "#FBF8F2";
-const C  = "#F1ECE3";
-const I  = "#15242D";
-const DI = '"Archivo Black", "Arial Black", sans-serif';
-const BO = '"Inter Tight", system-ui, sans-serif';
-const MO = '"JetBrains Mono", "Courier New", monospace';
-
-const PAINS = [
-  {
-    icon: "⚖️",
-    title: "Un seul avis négatif sur Google peut décourager 10 prospects",
-    body: "Avant même le premier rendez-vous, vos clients googlen votre nom. Un commentaire injurieux, une ancienne affaire médiatisée ou un avis de plaideur mécontent peut effacer des années de réputation.",
+const data: SectorData = {
+  sector: "Avocats & Cabinets juridiques",
+  h1: ["Votre réputation se joue", "avant le premier rendez-vous"],
+  subtitle: "Reeact surveille Google, la presse et les réseaux 24h/24 — et vous permet d'exporter des preuves légales pour vos dossiers.",
+  ctaPrimary: "Démarrer gratuitement →",
+  ctaSecondary: "Scanner mon cabinet",
+  scannerUrl: "https://app.reeact.io/PublicScanner",
+  mentions: [
+    { src: "google.fr", txt: "\"Maître Dupont, conseil précieux et très disponible\"", sent: "pos", age: "il y a 3 min", star: 5 },
+    { src: "trustpilot", txt: "\"Dossier traité avec rigueur, je recommande\"", sent: "pos", age: "il y a 41 min", star: 4 },
+    { src: "twitter.com", txt: "\"Ce cabinet a perdu mon affaire à cause de leur négligence\"", sent: "neg", age: "il y a 2h", star: 1 },
+    { src: "linkedin.com", txt: "Article : Top 10 des cabinets parisiens 2026", sent: "pos", age: "il y a 5h" },
+    { src: "forum-juridique.fr", txt: "\"Honoraires excessifs, procédure interminable\"", sent: "neg", age: "il y a 1j" },
+  ],
+  painEyebrow: "CE QUE CRAIGNENT LES AVOCATS",
+  painTitle: ["Ce que vos clients", "voient avant vous."],
+  painLead: "Avant le premier rendez-vous, vos prospects vous googlen. Un seul contenu négatif peut coûter des mandats entiers.",
+  pains: [
+    { title: "Un avis négatif en première page Google.", body: "92 % des prospects vérifient la réputation d'un avocat avant de le contacter. Un commentaire d'un plaideur mécontent suffit à faire fuir dix clients potentiels.", stat: "92% googlen avant d'appeler" },
+    { title: "Vos adversaires fouillent votre passé.", body: "Articles de presse, discussions de forum, anciens dossiers médiatisés : tout ce qui existe sur vous peut être utilisé contre vous ou vos clients lors d'une négociation.", stat: "Détection en < 5 min" },
+    { title: "Le bad buzz juridique se propage en heures.", body: "Un tweet sur une décision défavorable, un post d'un ancien client : sans alerte temps réel, vous gérez la crise a posteriori — quand il est trop tard.", stat: "Alerte immédiate" },
+  ],
+  featEyebrow: "FONCTIONNALITÉS",
+  featTitle: ["Conçu pour", "les professionnels du droit."],
+  features: [
+    { symbol: "▦", tag: "DOSSIER", title: "Dossier par client", lead: "Un espace dédié à chaque client", body: "Centralisez toutes les mentions, documents et l'historique de scans. Rien ne se mélange entre vos dossiers." },
+    { symbol: "⚖", tag: "JURIDIQUE", title: "Preuves légales exportables", lead: "Format PIÈCE N° officiel", body: "Chaque mention exportée est un constat numérique horodaté, formaté comme une pièce de procédure. Prêt pour vos conclusions." },
+    { symbol: "◉", tag: "TEMPS RÉEL", title: "Surveillance 24h/24", lead: "Google, presse, réseaux, forums", body: "Chaque nouvelle mention de votre cabinet est détectée et classée. Positive, neutre ou négative — vous le savez en premier." },
+    { symbol: "✦", tag: "ALERTE", title: "Alertes instantanées", lead: "E-mail dès qu'une mention critique", body: "Notifications immédiates sur les contenus à risque. Configurez les seuils selon l'intensité que vous souhaitez surveiller." },
+    { symbol: "◐", tag: "IA", title: "Analyse de sentiment IA", lead: "Diffamatoire ou critique légitime ?", body: "Notre modèle distingue l'avis négatif de l'accusation diffamatoire. Vous agissez avec discernement, pas dans la précipitation." },
+    { symbol: "☷", tag: "RAPPORT", title: "Rapport PDF cabinet", lead: "En-tête et logo de votre cabinet", body: "Export mensuel avec score, tendances et mots-clés. À partager avec vos associés ou avec vos clients pour justifier votre veille." },
+  ],
+  agencySection: {
+    eyebrow: "PLAN AGENCES & AVOCATS",
+    title: ["Un outil que vous intégrez", "à vos honoraires."],
+    subtitle: "Illimité, revendable, brandé à votre nom. Rentable dès le premier client.",
+    args: [
+      { symbol: "◈", title: "Refacturez le service à vos clients", body: "Le plan Agences est illimité en mots-clés et dossiers. Incluez la surveillance dans vos honoraires ou facturez-la en ligne dédiée." },
+      { symbol: "⊕", title: "Gérez plusieurs clients depuis un seul compte", body: "Un tableau de bord, autant de dossiers que de clients. Chaque client a ses mots-clés, ses mentions et ses documents. Rien ne se mélange." },
+      { symbol: "⊞", title: "Vous vendez déjà de la gestion du risque", body: "La e-réputation est un risque juridique et patrimonial. En proposant Reeact, vous enrichissez votre offre avec un service récurrent à forte valeur perçue." },
+      { symbol: "❋", title: "Des preuves exportables pour vos dossiers", body: "Chaque mention exportée est un constat numérique horodaté au format PIÈCE N°. Constituez vos preuves en quelques clics." },
+    ],
   },
-  {
-    icon: "🔍",
-    title: "Vos adversaires cherchent votre passé en ligne",
-    body: "Articles de presse, discussions de forum, contenus diffamatoires : tout ce qui existe sur vous peut être utilisé contre vous ou vos clients. Vous devez le savoir avant eux.",
-  },
-  {
-    icon: "⏱️",
-    title: "Le bad buzz juridique se propage en heures, pas en jours",
-    body: "Un tweet sur une décision défavorable, un post LinkedIn d'un ancien client : sans alerte temps réel, vous gérez la crise a posteriori — souvent trop tard.",
-  },
-];
-
-const FEATURES = [
-  { icon: "📁", title: "Dossier par client", body: "Créez un espace dédié à chaque client. Centralisez les mentions, les documents et l'historique des scans." },
-  { icon: "📄", title: "Export de preuves légales", body: "Générez des documents PDF au format PIÈCE N° — constat officiel, mentions horodatées, prêts pour vos conclusions." },
-  { icon: "📎", title: "Import de documents", body: "Joignez captures d'écran, correspondances, pièces adverses directement au dossier client." },
-  { icon: "🔔", title: "Alertes temps réel", body: "Notification immédiate dès qu'une nouvelle mention apparaît — Google, presse, réseaux, avis." },
-  { icon: "📊", title: "Rapport de réputation", body: "Export PDF professionnel avec en-tête cabinet, score de réputation et analyse par mot-clé." },
-  { icon: "🌐", title: "Toutes les sources", body: "Google, TripAdvisor, Trustpilot, Linkedin, presse nationale, forums juridiques — surveillance complète." },
-];
-
-const AGENCY_ARGS = [
-  {
-    icon: "💶",
-    title: "Refacturez le service à vos clients",
-    body: "Le plan Agences & Avocats est illimité. Vous pouvez créer autant de dossiers que vous avez de clients et inclure la surveillance dans vos honoraires ou en facturer une ligne dédiée.",
-  },
-  {
-    icon: "👥",
-    title: "Gérez plusieurs clients depuis un seul compte",
-    body: "Un tableau de bord, plusieurs dossiers. Chaque client a ses mots-clés, ses sources, son historique de scans et ses documents. Rien ne se mélange.",
-  },
-  {
-    icon: "🏷️",
-    title: "Vous vendez déjà de la gestion du risque",
-    body: "La e-réputation est un risque juridique et patrimonial. En proposant Reeact, vous enrichissez votre offre avec un service récurrent qui valorise votre accompagnement.",
-  },
-  {
-    icon: "📋",
-    title: "Des preuves exportables pour vos dossiers",
-    body: "Chaque mention exportée est un constat numérique horodaté, formaté comme une pièce de procédure. Gagnez du temps sur la constitution de vos preuves.",
-  },
-];
-
-const FAQS = [
-  {
-    q: "Puis-je créer un compte distinct pour chaque client ?",
-    a: "Non, c'est plus simple : vous gérez tout depuis votre compte. Vous créez un 'dossier client' par client dans Reeact, avec ses propres mots-clés, sources et documents. Un seul abonnement, autant de clients que vous souhaitez.",
-  },
-  {
-    q: "Les PDF de preuves sont-ils recevables en procédure ?",
-    a: "Nos exports constituent un constat électronique horodaté. Ils sont produits comme pièce dans vos procédures. Pour une valeur probante maximale, nous recommandons de les compléter par un constat d'huissier en cas de litige formel.",
-  },
-  {
-    q: "Quel est le tarif du plan Agences & Avocats ?",
-    a: "399 €/mois TTC, mots-clés et sources illimités, dossiers clients illimités. Un abonnement unique pour tout votre cabinet.",
-  },
-];
+  faqs: [
+    { q: "Puis-je créer un compte distinct pour chaque client ?", a: "Non, c'est plus simple : un seul compte, autant de dossiers que de clients. Chaque dossier a ses propres mots-clés, documents et historique." },
+    { q: "Les PDF de preuves sont-ils recevables en procédure ?", a: "Nos exports constituent un constat électronique horodaté. Pour une valeur probante maximale, nous recommandons de les compléter par un constat d'huissier lors de litiges formels." },
+    { q: "Quel est le tarif du plan Agences & Avocats ?", a: "399 €/mois TTC, mots-clés et sources illimités, dossiers clients illimités. Un seul abonnement pour tout votre cabinet." },
+  ],
+  ctaFinalTitle: "Protégez la réputation de votre cabinet.",
+  ctaFinalSub: "Essai gratuit · Aucune carte bancaire · Résultats en 2 minutes",
+};
 
 export default function PourLesAvocats() {
-  return (
-    <>
-      <Nav />
-      <main style={{ background: P, fontFamily: BO }}>
-
-        {/* ── Hero ─────────────────────────────────────────────────────────── */}
-        <section style={{
-          background: `linear-gradient(160deg, ${TD} 0%, ${T} 60%, #2d5a70 100%)`,
-          padding: "160px 40px 100px",
-          position: "relative", overflow: "hidden",
-        }}>
-          {/* Grid watermark */}
-          <div style={{
-            position: "absolute", inset: 0, opacity: 0.03,
-            backgroundImage: "linear-gradient(rgba(241,236,227,.5) 1px,transparent 1px),linear-gradient(90deg,rgba(241,236,227,.5) 1px,transparent 1px)",
-            backgroundSize: "48px 48px",
-          }} />
-
-          <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative" }}>
-            <span style={{
-              display: "inline-block", fontFamily: MO, fontSize: 11,
-              letterSpacing: "0.15em", textTransform: "uppercase",
-              color: O, border: `1px solid ${O}55`,
-              padding: "6px 14px", borderRadius: 999, marginBottom: 28,
-            }}>Avocats &amp; Cabinets juridiques</span>
-
-            <h1 style={{
-              fontFamily: DI, fontSize: "clamp(42px, 6vw, 88px)",
-              lineHeight: 0.95, letterSpacing: "-0.04em",
-              color: C, margin: "0 0 28px", maxWidth: 900,
-            }}>
-              Votre réputation d&apos;avocat se joue{" "}
-              <span style={{ color: O }}>avant le premier rendez-vous</span>
-            </h1>
-
-            <p style={{
-              fontSize: "clamp(17px, 2vw, 22px)", lineHeight: 1.5,
-              color: "rgba(241,236,227,0.75)", maxWidth: 640, margin: "0 0 44px",
-            }}>
-              Reeact surveille Google, la presse et les réseaux sociaux pour détecter chaque mention de votre cabinet — et vous permet d'exporter des preuves légales en un clic.
-            </p>
-
-            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-              <a href="https://app.reeact.io/register" style={{
-                padding: "16px 30px", borderRadius: 999, background: O, color: "#fff",
-                fontFamily: BO, fontWeight: 700, fontSize: 17, textDecoration: "none",
-              }}>Démarrer gratuitement →</a>
-              <a href="https://app.reeact.io/PublicScanner" style={{
-                padding: "16px 30px", borderRadius: 999,
-                border: "1.5px solid rgba(241,236,227,0.25)", color: C,
-                fontFamily: BO, fontWeight: 600, fontSize: 17, textDecoration: "none",
-              }}>Scanner mon cabinet</a>
-            </div>
-          </div>
-        </section>
-
-        {/* ── Douleurs ─────────────────────────────────────────────────────── */}
-        <section style={{ padding: "96px 40px", maxWidth: 1100, margin: "0 auto" }}>
-          <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: O }}>Les douleurs du secteur</span>
-          <h2 style={{ fontFamily: DI, fontSize: "clamp(36px, 4.5vw, 60px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: I, margin: "16px 0 48px", maxWidth: 700 }}>
-            Ce que craignent les avocats chaque matin
-          </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 28 }}>
-            {PAINS.map((p, i) => (
-              <div key={i} style={{
-                background: "#fff", borderRadius: 20, padding: "32px 28px",
-                border: `1px solid ${T}10`,
-                boxShadow: "0 2px 20px -8px rgba(20,30,40,0.08)",
-              }}>
-                <div style={{ fontSize: 36, marginBottom: 16 }}>{p.icon}</div>
-                <h3 style={{ fontFamily: DI, fontSize: 20, lineHeight: 1.1, color: TD, margin: "0 0 12px", letterSpacing: "-0.02em" }}>{p.title}</h3>
-                <p style={{ fontSize: 15, lineHeight: 1.6, color: `${T}99`, margin: 0 }}>{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── Fonctionnalités ───────────────────────────────────────────────── */}
-        <section style={{ padding: "80px 40px", background: `${TD}06` }}>
-          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: T }}>Ce que fait Reeact pour vous</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: I, margin: "16px 0 48px", maxWidth: 700 }}>
-              Conçu pour les professionnels du droit
-            </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
-              {FEATURES.map((f, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "24px 22px", border: `1px solid ${T}10` }}>
-                  <span style={{ fontSize: 28, display: "block", marginBottom: 12 }}>{f.icon}</span>
-                  <h3 style={{ fontFamily: BO, fontWeight: 700, fontSize: 16, color: TD, margin: "0 0 8px" }}>{f.title}</h3>
-                  <p style={{ fontSize: 14, lineHeight: 1.55, color: `${T}88`, margin: 0 }}>{f.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Offre Agences & Avocats ───────────────────────────────────────── */}
-        <section style={{ padding: "96px 40px" }}>
-          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: O }}>Offre Agences &amp; Avocats</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: I, margin: "16px 0 12px", maxWidth: 800 }}>
-              Un outil professionnel pensé pour les cabinets
-            </h2>
-            <p style={{ fontSize: 18, lineHeight: 1.55, color: `${T}88`, margin: "0 0 48px", maxWidth: 620 }}>
-              Pas un simple abonnement : une infrastructure de surveillance que vous intégrez à votre pratique et que vous facturez à vos clients.
-            </p>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 28 }}>
-              {AGENCY_ARGS.map((a, i) => (
-                <div key={i} style={{
-                  background: `linear-gradient(135deg, ${TD} 0%, ${T} 100%)`,
-                  borderRadius: 20, padding: "32px 28px", color: C,
-                }}>
-                  <div style={{ fontSize: 32, marginBottom: 16 }}>{a.icon}</div>
-                  <h3 style={{ fontFamily: DI, fontSize: 19, lineHeight: 1.1, color: C, margin: "0 0 12px", letterSpacing: "-0.02em" }}>{a.title}</h3>
-                  <p style={{ fontSize: 14, lineHeight: 1.6, color: "rgba(241,236,227,0.72)", margin: 0 }}>{a.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── FAQ ──────────────────────────────────────────────────────────── */}
-        <section style={{ padding: "80px 40px", background: `${TD}06` }}>
-          <div style={{ maxWidth: 760, margin: "0 auto" }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", color: T }}>FAQ</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(28px, 3.5vw, 48px)", lineHeight: 1, letterSpacing: "-0.03em", color: I, margin: "16px 0 40px" }}>
-              Questions fréquentes
-            </h2>
-            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-              {FAQS.map((f, i) => (
-                <div key={i} style={{ background: "#fff", borderRadius: 16, padding: "24px 26px", border: `1px solid ${T}10` }}>
-                  <h3 style={{ fontFamily: BO, fontWeight: 700, fontSize: 16, color: TD, margin: "0 0 10px" }}>{f.q}</h3>
-                  <p style={{ fontSize: 15, lineHeight: 1.6, color: `${T}88`, margin: 0 }}>{f.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── CTA final ────────────────────────────────────────────────────── */}
-        <section style={{ padding: "96px 40px" }}>
-          <div style={{
-            maxWidth: 800, margin: "0 auto", textAlign: "center",
-            background: `linear-gradient(135deg, ${TD} 0%, ${T} 100%)`,
-            borderRadius: 28, padding: "64px 48px",
-          }}>
-            <span style={{ fontFamily: MO, fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase", color: O, display: "block", marginBottom: 20 }}>Commencez dès aujourd&apos;hui</span>
-            <h2 style={{ fontFamily: DI, fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 0.95, letterSpacing: "-0.04em", color: C, margin: "0 0 20px" }}>
-              Protégez la réputation de votre cabinet
-            </h2>
-            <p style={{ fontSize: 17, color: "rgba(241,236,227,0.7)", margin: "0 0 36px", lineHeight: 1.5 }}>
-              Essai gratuit · Aucune carte bancaire · Résultats en 2 minutes
-            </p>
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <a href="https://app.reeact.io/register" style={{
-                padding: "16px 32px", borderRadius: 999, background: O, color: "#fff",
-                fontFamily: BO, fontWeight: 700, fontSize: 17, textDecoration: "none",
-              }}>Démarrer gratuitement →</a>
-              <a href="https://app.reeact.io/AgencyOffer" style={{
-                padding: "16px 32px", borderRadius: 999,
-                border: "1.5px solid rgba(241,236,227,0.3)", color: C,
-                fontFamily: BO, fontWeight: 600, fontSize: 17, textDecoration: "none",
-              }}>Voir le plan Agences</a>
-            </div>
-          </div>
-        </section>
-
-      </main>
-      <Footer />
-    </>
-  );
+  return <SectorPageClient data={data} />;
 }

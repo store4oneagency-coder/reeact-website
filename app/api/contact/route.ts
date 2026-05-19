@@ -8,23 +8,23 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Champs obligatoires manquants." }, { status: 400 });
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
+    const apiKey = process.env.BREVO_API_KEY;
     if (!apiKey) {
       return NextResponse.json({ error: "Service email non configuré." }, { status: 500 });
     }
 
-    const res = await fetch("https://api.resend.com/emails", {
+    const res = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
+        "api-key": apiKey,
       },
       body: JSON.stringify({
-        from: "Formulaire Reeact <contact@reeact.io>",
-        to: ["contact@reeact.io"],
-        reply_to: email.trim(),
+        sender:  { name: "Formulaire Reeact", email: "contact@reeact.io" },
+        to:      [{ email: "contact@reeact.io", name: "Équipe Reeact" }],
+        replyTo: { email: email.trim(), name: name.trim() },
         subject: `[Contact] ${subject?.trim() || "Demande depuis reeact.io"} — ${name.trim()}`,
-        html: `
+        htmlContent: `
           <div style="font-family: system-ui, sans-serif; max-width: 600px; margin: 0 auto; padding: 32px;">
             <div style="background: #1B3645; padding: 24px 28px; border-radius: 12px 12px 0 0;">
               <p style="color: #F1ECE3; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; margin: 0 0 8px; opacity: 0.6;">NOUVEAU MESSAGE</p>
@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
 
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
-      throw new Error((err as { message?: string }).message || `Resend error ${res.status}`);
+      throw new Error((err as { message?: string }).message || `Brevo error ${res.status}`);
     }
 
     return NextResponse.json({ success: true });

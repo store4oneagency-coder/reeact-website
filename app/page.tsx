@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
 const TEAL       = "#27475A";
@@ -188,8 +188,8 @@ function Nav() {
 
       {/* Desktop CTA */}
       <div style={{ display: "flex", gap: 12, alignItems: "center" }} className="hidden-mobile">
-        <a href="/app" style={{ color: TEAL_DEEP, textDecoration: "none", fontSize: 15, fontWeight: 500, opacity: 0.78 }}>Connexion</a>
-        <Btn href="/subscription" primary size="sm">S&apos;abonner</Btn>
+        <a href="https://app.reeact.io/login" style={{ color: TEAL_DEEP, textDecoration: "none", fontSize: 15, fontWeight: 500, opacity: 0.78 }}>Connexion</a>
+        <Btn href="https://app.reeact.io/register" primary size="sm">S&apos;abonner</Btn>
       </div>
 
       {/* Mobile burger */}
@@ -222,8 +222,8 @@ function Nav() {
             }}>{l}</a>
           ))}
           <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
-            <a href="/app" style={{ textAlign: "center", padding: "12px", border: `1.5px solid ${TEAL}22`, borderRadius: 12, color: TEAL_DEEP, textDecoration: "none", fontSize: 15, fontWeight: 500 }}>Connexion</a>
-            <a href="/subscription" style={{ textAlign: "center", padding: "12px", background: ORANGE, borderRadius: 12, color: "#fff", textDecoration: "none", fontSize: 15, fontWeight: 600 }}>S&apos;abonner</a>
+            <a href="https://app.reeact.io/login" style={{ textAlign: "center", padding: "12px", border: `1.5px solid ${TEAL}22`, borderRadius: 12, color: TEAL_DEEP, textDecoration: "none", fontSize: 15, fontWeight: 500 }}>Connexion</a>
+            <a href="https://app.reeact.io/register" style={{ textAlign: "center", padding: "12px", background: ORANGE, borderRadius: 12, color: "#fff", textDecoration: "none", fontSize: 15, fontWeight: 600 }}>S&apos;abonner</a>
           </div>
         </div>
       )}
@@ -338,7 +338,7 @@ function Hero() {
           <Reveal delay={80}>
             <h1 style={{
               fontFamily: DISPLAY, fontWeight: 900,
-              fontSize: "clamp(64px, 8.6vw, 140px)", lineHeight: 0.9, letterSpacing: "-0.05em",
+              fontSize: "clamp(48px, 6.4vw, 104px)", lineHeight: 0.92, letterSpacing: "-0.05em",
               margin: "28px 0 24px", color: TEAL_DEEP,
             }}>
               Découvrez<br />
@@ -366,7 +366,7 @@ function Hero() {
           </Reveal>
           <Reveal delay={220}>
             <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-              <Btn primary href="/subscription">S&apos;abonner</Btn>
+              <Btn primary href="https://app.reeact.io/register">S&apos;abonner</Btn>
               <Btn href="#how" icon="↓">Voir comment ça marche</Btn>
             </div>
             <div style={{ marginTop: 22, display: "flex", alignItems: "center", gap: 18, color: "rgba(20,30,40,0.55)", fontSize: 14, flexWrap: "wrap" }}>
@@ -710,7 +710,7 @@ function Pricing() {
                   </div>
                 ))}
               </div>
-              <Btn primary href="/subscription">S&apos;abonner</Btn>
+              <Btn primary href="https://app.reeact.io/register">S&apos;abonner</Btn>
               <div style={{ fontSize: 13, opacity: 0.65, textAlign: "center", marginTop: -8 }}>Sans carte bancaire · résiliable en 1 clic</div>
             </div>
           </Reveal>
@@ -785,8 +785,219 @@ function FinalCTA() {
         </Reveal>
         <Reveal delay={200}>
           <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn primary href="/subscription">S&apos;abonner</Btn>
-            <Btn href="mailto:contact@reeact.io">Parler à l&apos;équipe</Btn>
+            <Btn primary href="https://app.reeact.io/register">S&apos;abonner</Btn>
+            <Btn href="#contact" icon="↓">Parler à l&apos;équipe</Btn>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// ─── Contact ──────────────────────────────────────────────────────────────────
+function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm(prev => ({ ...prev, [k]: e.target.value }));
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) return;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Erreur envoi");
+      setStatus("success");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      setErrorMsg((err as Error).message);
+      setStatus("error");
+    }
+  };
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%", padding: "14px 18px", borderRadius: 12,
+    border: `1.5px solid ${TEAL}22`, background: PAPER,
+    fontFamily: BODY, fontSize: 15, color: INK, outline: "none",
+    boxSizing: "border-box", transition: "border-color .15s",
+  };
+
+  return (
+    <section id="contact" style={{ background: "#fff", padding: "120px 40px", borderTop: `1px solid ${TEAL}11` }}>
+      <div style={{ maxWidth: 1100, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: 72, alignItems: "start" }} className="contact-grid">
+
+        {/* ── Left — pitch ── */}
+        <div>
+          <Reveal>
+            <Chip color={TEAL}>Contactez-nous</Chip>
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 style={{
+              fontFamily: DISPLAY, fontWeight: 900,
+              fontSize: "clamp(40px, 5vw, 72px)", lineHeight: 0.95, letterSpacing: "-0.04em",
+              margin: "20px 0 20px", color: TEAL_DEEP,
+            }}>
+              Une question<br />avant de vous<br /><span style={{ color: ORANGE }}>lancer ?</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={140}>
+            <p style={{ fontFamily: BODY, fontSize: 17, lineHeight: 1.6, color: "rgba(20,30,40,0.65)", margin: "0 0 36px", maxWidth: 420 }}>
+              Notre équipe répond sous 24h. Que ce soit pour une démo, une question sur la tarification ou un besoin spécifique — on est là.
+            </p>
+          </Reveal>
+          <Reveal delay={180}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              {[
+                { icon: "✉", label: "Email", value: "contact@reeact.io" },
+                { icon: "⏱", label: "Délai de réponse", value: "Sous 24h ouvrées" },
+                { icon: "🇫🇷", label: "Équipe basée en France", value: "Paris · disponible 9h–18h" },
+              ].map(({ icon, label, value }) => (
+                <div key={label} style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                  <div style={{
+                    width: 42, height: 42, borderRadius: 10,
+                    background: `${TEAL_DEEP}08`, display: "flex", alignItems: "center",
+                    justifyContent: "center", fontSize: 18, flexShrink: 0,
+                  }}>{icon}</div>
+                  <div>
+                    <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: "0.1em", color: "rgba(20,30,40,0.45)", textTransform: "uppercase" }}>{label}</div>
+                    <div style={{ fontFamily: BODY, fontSize: 15, fontWeight: 600, color: TEAL_DEEP, marginTop: 1 }}>{value}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        {/* ── Right — form ── */}
+        <Reveal delay={100}>
+          <div style={{
+            background: PAPER, borderRadius: 24, padding: 40,
+            border: `1px solid ${TEAL}10`,
+            boxShadow: "0 20px 40px -20px rgba(20,30,40,0.08)",
+          }}>
+            {status === "success" ? (
+              <div style={{ textAlign: "center", padding: "48px 0" }}>
+                <div style={{
+                  width: 64, height: 64, borderRadius: 999,
+                  background: `${GREEN}18`, display: "flex", alignItems: "center",
+                  justifyContent: "center", margin: "0 auto 20px", fontSize: 28,
+                }}>✓</div>
+                <h3 style={{ fontFamily: DISPLAY, fontSize: 26, color: TEAL_DEEP, letterSpacing: "-0.02em", margin: "0 0 10px" }}>
+                  Message envoyé !
+                </h3>
+                <p style={{ fontFamily: BODY, fontSize: 15, color: "rgba(20,30,40,0.6)", lineHeight: 1.5 }}>
+                  Nous avons bien reçu votre message et vous répondrons sous 24h.
+                </p>
+                <button
+                  onClick={() => setStatus("idle")}
+                  style={{
+                    marginTop: 24, padding: "10px 24px", borderRadius: 999,
+                    background: TEAL_DEEP, color: CREAM, border: "none",
+                    fontFamily: BODY, fontSize: 14, fontWeight: 600, cursor: "pointer",
+                  }}
+                >
+                  Envoyer un autre message
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                  <div>
+                    <label style={{ display: "block", fontFamily: MONO, fontSize: 11, letterSpacing: "0.1em", color: "rgba(20,30,40,0.5)", textTransform: "uppercase", marginBottom: 8 }}>Nom *</label>
+                    <input
+                      required value={form.name} onChange={set("name")}
+                      placeholder="Jean Dupont"
+                      style={inputStyle}
+                      onFocus={e => (e.target.style.borderColor = TEAL)}
+                      onBlur={e => (e.target.style.borderColor = `${TEAL}22`)}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ display: "block", fontFamily: MONO, fontSize: 11, letterSpacing: "0.1em", color: "rgba(20,30,40,0.5)", textTransform: "uppercase", marginBottom: 8 }}>Email *</label>
+                    <input
+                      required type="email" value={form.email} onChange={set("email")}
+                      placeholder="jean@exemple.fr"
+                      style={inputStyle}
+                      onFocus={e => (e.target.style.borderColor = TEAL)}
+                      onBlur={e => (e.target.style.borderColor = `${TEAL}22`)}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label style={{ display: "block", fontFamily: MONO, fontSize: 11, letterSpacing: "0.1em", color: "rgba(20,30,40,0.5)", textTransform: "uppercase", marginBottom: 8 }}>Sujet</label>
+                  <input
+                    value={form.subject} onChange={set("subject")}
+                    placeholder="Question sur les tarifs, démo, partenariat…"
+                    style={inputStyle}
+                    onFocus={e => (e.target.style.borderColor = TEAL)}
+                    onBlur={e => (e.target.style.borderColor = `${TEAL}22`)}
+                  />
+                </div>
+
+                <div>
+                  <label style={{ display: "block", fontFamily: MONO, fontSize: 11, letterSpacing: "0.1em", color: "rgba(20,30,40,0.5)", textTransform: "uppercase", marginBottom: 8 }}>Message *</label>
+                  <textarea
+                    required value={form.message} onChange={set("message")}
+                    placeholder="Décrivez votre besoin ou posez votre question…"
+                    rows={5}
+                    style={{ ...inputStyle, resize: "vertical", minHeight: 120 }}
+                    onFocus={e => (e.target.style.borderColor = TEAL)}
+                    onBlur={e => (e.target.style.borderColor = `${TEAL}22`)}
+                  />
+                </div>
+
+                {status === "error" && (
+                  <div style={{
+                    padding: "12px 16px", borderRadius: 10,
+                    background: `${RED}10`, border: `1px solid ${RED}30`,
+                    color: RED, fontFamily: BODY, fontSize: 14,
+                  }}>
+                    {errorMsg || "Une erreur est survenue. Réessayez."}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  style={{
+                    padding: "16px 28px", borderRadius: 999,
+                    background: status === "sending" ? `${ORANGE}88` : ORANGE,
+                    color: "#fff", border: "none",
+                    fontFamily: BODY, fontSize: 16, fontWeight: 700,
+                    cursor: status === "sending" ? "not-allowed" : "pointer",
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+                    transition: "background .15s",
+                  }}
+                >
+                  {status === "sending" ? (
+                    <>
+                      <span style={{
+                        width: 18, height: 18, borderRadius: 999,
+                        border: "2px solid rgba(255,255,255,0.3)",
+                        borderTop: "2px solid #fff",
+                        animation: "spin .8s linear infinite", display: "inline-block",
+                      }} />
+                      Envoi en cours…
+                    </>
+                  ) : (
+                    <>Envoyer le message <span>→</span></>
+                  )}
+                </button>
+
+                <p style={{ fontFamily: BODY, fontSize: 13, color: "rgba(20,30,40,0.45)", textAlign: "center", margin: 0 }}>
+                  Votre message sera envoyé à <strong>contact@reeact.io</strong>
+                </p>
+              </form>
+            )}
           </div>
         </Reveal>
       </div>
@@ -838,18 +1049,20 @@ const CSS = `
   @keyframes scan { 0%,100% { opacity:0; top:0; } 50% { opacity:1; } 100% { top:100%; opacity:0; } }
   @keyframes pulse { 0%,100% { transform:scale(1); box-shadow:0 0 0 0 rgba(233,78,78,0.4); } 50% { transform:scale(1.15); box-shadow:0 0 0 6px rgba(233,78,78,0); } }
   @keyframes bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(6px); } }
+  @keyframes spin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
 
   .hidden-mobile { display: flex !important; }
   .show-mobile   { display: none !important; }
 
   @media (max-width: 900px) {
-    .hero-grid    { grid-template-columns: 1fr !important; }
-    .steps-grid   { grid-template-columns: 1fr !important; }
-    .feat-grid    { grid-template-columns: 1fr 1fr !important; }
-    .pricing-grid { grid-template-columns: 1fr !important; }
-    .stats-grid   { grid-template-columns: repeat(2, 1fr) !important; }
-    .footer-grid  { grid-template-columns: 1fr 1fr !important; }
-    .dash-mock    { grid-template-columns: 1fr !important; }
+    .hero-grid     { grid-template-columns: 1fr !important; }
+    .steps-grid    { grid-template-columns: 1fr !important; }
+    .feat-grid     { grid-template-columns: 1fr 1fr !important; }
+    .pricing-grid  { grid-template-columns: 1fr !important; }
+    .stats-grid    { grid-template-columns: repeat(2, 1fr) !important; }
+    .footer-grid   { grid-template-columns: 1fr 1fr !important; }
+    .dash-mock     { grid-template-columns: 1fr !important; }
+    .contact-grid  { grid-template-columns: 1fr !important; }
     .dash-mock aside { display: none; }
     section[id]   { padding-left: 24px !important; padding-right: 24px !important; }
     .hidden-mobile { display: none !important; }
@@ -879,6 +1092,7 @@ export default function Home() {
         <DashboardSection />
         <Pricing />
         <FinalCTA />
+        <Contact />
         <Footer />
       </div>
     </>

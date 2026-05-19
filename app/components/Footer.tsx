@@ -1,3 +1,5 @@
+"use client";
+
 const TEAL      = "#27475A";
 const TEAL_DEEP = "#1B3645";
 const CREAM     = "#F1ECE3";

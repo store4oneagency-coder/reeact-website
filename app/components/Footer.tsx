@@ -87,7 +87,11 @@ export default function Footer() {
             © {new Date().getFullYear()} Reeact. Tous droits réservés.
           </p>
           <div style={{ display: "flex", gap: 24 }}>
-            {[["Mentions légales", "/mentions-legales"], ["Confidentialité", "/confidentialite"]].map(([l, h]) => (
+            {[
+              ["Mentions légales", "/mentions-legales"],
+              ["Confidentialité", "/confidentialite"],
+              ["CGV / CGU", "https://app.reeact.io/TermsAndConditions"],
+            ].map(([l, h]) => (
               <a key={h} href={h} style={{ color: "rgba(241,236,227,0.4)", textDecoration: "none", fontSize: 13, fontFamily: BODY }}>{l}</a>
             ))}
           </div>

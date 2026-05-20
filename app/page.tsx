@@ -189,7 +189,7 @@ function Nav() {
       {/* Desktop CTA */}
       <div style={{ display: "flex", gap: 12, alignItems: "center" }} className="hidden-mobile">
         <a href="https://app.reeact.io/login" style={{ color: TEAL_DEEP, textDecoration: "none", fontSize: 15, fontWeight: 500, opacity: 0.78 }}>Connexion</a>
-        <Btn href="https://app.reeact.io/register" primary size="sm">S&apos;abonner</Btn>
+        <Btn href="https://app.reeact.io/register" primary size="sm">Tester gratuitement</Btn>
       </div>
 
       {/* Mobile burger */}
@@ -223,7 +223,7 @@ function Nav() {
           ))}
           <div style={{ marginTop: 12, display: "flex", flexDirection: "column", gap: 8 }}>
             <a href="https://app.reeact.io/login" style={{ textAlign: "center", padding: "12px", border: `1.5px solid ${TEAL}22`, borderRadius: 12, color: TEAL_DEEP, textDecoration: "none", fontSize: 15, fontWeight: 500 }}>Connexion</a>
-            <a href="https://app.reeact.io/register" style={{ textAlign: "center", padding: "12px", background: ORANGE, borderRadius: 12, color: "#fff", textDecoration: "none", fontSize: 15, fontWeight: 600 }}>S&apos;abonner</a>
+            <a href="https://app.reeact.io/register" style={{ textAlign: "center", padding: "12px", background: ORANGE, borderRadius: 12, color: "#fff", textDecoration: "none", fontSize: 15, fontWeight: 600 }}>Tester gratuitement</a>
           </div>
         </div>
       )}
@@ -366,7 +366,7 @@ function Hero() {
           </Reveal>
           <Reveal delay={220}>
             <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
-              <Btn primary href="https://app.reeact.io/register">S&apos;abonner</Btn>
+              <Btn primary href="https://app.reeact.io/register">Tester gratuitement</Btn>
               <Btn href="#how" icon="↓">Voir comment ça marche</Btn>
             </div>
             <div style={{ marginTop: 22, display: "flex", alignItems: "center", gap: 18, color: "rgba(20,30,40,0.55)", fontSize: 14, flexWrap: "wrap" }}>
@@ -710,7 +710,7 @@ function Pricing() {
                   </div>
                 ))}
               </div>
-              <Btn primary href="https://app.reeact.io/register">S&apos;abonner</Btn>
+              <Btn primary href="https://app.reeact.io/register">Tester gratuitement</Btn>
               <div style={{ fontSize: 13, opacity: 0.65, textAlign: "center", marginTop: -8 }}>Sans carte bancaire · résiliable en 1 clic</div>
             </div>
           </Reveal>
@@ -785,7 +785,7 @@ function FinalCTA() {
         </Reveal>
         <Reveal delay={200}>
           <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn primary href="https://app.reeact.io/register">S&apos;abonner</Btn>
+            <Btn primary href="https://app.reeact.io/register">Tester gratuitement</Btn>
             <Btn href="#contact" icon="↓">Parler à l&apos;équipe</Btn>
           </div>
         </Reveal>

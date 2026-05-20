@@ -23,8 +23,8 @@ const data: SectorData = {
   h1: ["Défendez vos clients", "avant qu'ils vous appellent"],
   subtitle: "Reeact vous permet de surveiller la réputation en ligne de chacun de vos clients, de constituer des preuves numériques recevables et de refacturer ce service dans vos honoraires.",
   ctaPrimary: "Démarrer gratuitement →",
-  ctaSecondary: "Voir le plan Avocats",
-  scannerUrl: "https://app.reeact.io/AgencyOffer",
+  ctaSecondary: "Voir le plan Legal Pro",
+  scannerUrl: "https://app.reeact.io/LegalProOffer",
   mentions: [
     { src: "twitter.com", txt: "\"[Client A] : arnaque confirmée — thread avec 340 RTs\"", sent: "neg", age: "il y a 8 min" },
     { src: "google.fr", txt: "\"Dr. [Client B] — incompétent, a failli me tuer\"", sent: "neg", age: "il y a 42 min", star: 1 },
@@ -125,10 +125,42 @@ const data: SectorData = {
       },
     ],
   },
+  legalProSection: {
+    eyebrow: "PLAN LEGAL PRO",
+    title: ["Pour les cabinets", "qui traitent le volume."],
+    subtitle: "990 €/mois tout inclus. Mots-clés illimités, sources illimitées, interventions légales directement depuis l'app. Le plan pour les structures qui gèrent des dizaines de clients simultanément.",
+    features: [
+      { symbol: "∞", label: "Mots-clés illimités" },
+      { symbol: "◉", label: "Sources illimitées — 200+ plateformes" },
+      { symbol: "⚖", label: "Demandes d'intervention légale incluses" },
+      { symbol: "▦", label: "Gestion multi-clients (dossiers séparés)" },
+      { symbol: "✦", label: "Alertes temps réel prioritaires" },
+      { symbol: "☷", label: "Rapports PDF à votre branding" },
+    ],
+    extraTitle: "Ce que le plan Legal Pro ajoute.",
+    extras: [
+      {
+        symbol: "⚖",
+        title: "Interventions légales depuis l'app",
+        body: "Déposez des demandes d'intervention directement depuis Reeact pour chaque mention problématique. Un avocat partenaire instruit le dossier, vous gérez le suivi depuis votre tableau de bord.",
+      },
+      {
+        symbol: "▦",
+        title: "Dossiers clients illimités",
+        body: "Créez autant de dossiers que de clients, chacun avec ses propres mots-clés, sources et historique de mentions. Gérez 10, 50 ou 200 clients depuis un seul compte sans friction.",
+      },
+      {
+        symbol: "❋",
+        title: "Support prioritaire & onboarding dédié",
+        body: "Un onboarding accompagné par notre équipe, un accès support prioritaire et un suivi de compte personnalisé. Vous êtes opérationnel dès la première semaine.",
+      },
+    ],
+  },
+
   faqs: [
     {
-      q: "Puis-je surveiller des dizaines de clients simultanément ?",
-      a: "Oui. Le plan Agences & Avocats est illimité en dossiers. Ajoutez autant de clients que vous en avez, chacun avec ses propres mots-clés et ses sources. Tout est centralisé dans un seul compte.",
+      q: "Quelle est la différence entre le plan Agency et le plan Legal Pro ?",
+      a: "Le plan Agences & Avocats (399 €/mois) donne accès à des mots-clés et sources illimités pour autant de clients que vous en avez. Le plan Legal Pro (990 €/mois) inclut tout cela, plus les demandes d'intervention légale directement depuis l'app, un support prioritaire et un onboarding accompagné — conçu pour les cabinets gérant un volume élevé.",
     },
     {
       q: "Les exports de preuves sont-ils recevables en procédure ?",
@@ -136,7 +168,11 @@ const data: SectorData = {
     },
     {
       q: "Comment facturer ce service à mes clients ?",
-      a: "Libre à vous : inclusion dans les honoraires de conseil, ligne dédiée dans votre engagement de retainer, ou forfait mensuel autonome. Le plan à 399 €/mois est conçu pour être refacturé à l'unité — rentable dès le deuxième client.",
+      a: "Libre à vous : inclusion dans les honoraires de conseil, ligne dédiée dans votre retainer, ou forfait mensuel autonome. Les plans à 399 € et 990 €/mois sont conçus pour être refacturés — rentables dès le deuxième client au plan Agency, dès le premier au Legal Pro.",
+    },
+    {
+      q: "Puis-je passer du plan Agency au plan Legal Pro sans résiliation ?",
+      a: "Oui, l'upgrade se fait en un clic depuis votre espace compte. Le prorata est calculé automatiquement : vous ne payez que la différence pour les jours restants du mois en cours.",
     },
   ],
   ctaFinalTitle: "Défendez vos clients dès le premier signal numérique.",

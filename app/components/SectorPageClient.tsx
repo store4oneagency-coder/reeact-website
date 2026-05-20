@@ -53,6 +53,15 @@ export interface SectorData {
     args: Array<{ symbol: string; title: string; body: string }>;
   };
 
+  legalProSection?: {
+    eyebrow: string;
+    title: [string, string];
+    subtitle: string;
+    features: Array<{ symbol: string; label: string }>;
+    extraTitle: string;
+    extras: Array<{ symbol: string; title: string; body: string }>;
+  };
+
   faqs: Array<{ q: string; a: string }>;
 
   ctaFinalTitle: string;
@@ -671,6 +680,166 @@ function AgencySection({ ag }: { ag: NonNullable<SectorData["agencySection"]> })
   );
 }
 
+// ─── Section 6b — Legal Pro ───────────────────────────────────────────────────
+const PURPLE = "#7C3AED";
+const PURPLE_LIGHT = "#9D6EF5";
+
+function LegalProSection({ lp }: { lp: NonNullable<SectorData["legalProSection"]> }) {
+  return (
+    <section style={{ background: TEAL_DEEP, color: CREAM, padding: "140px 40px", position: "relative", overflow: "hidden" }}>
+      {/* watermark */}
+      <div style={{ position: "absolute", right: -200, top: -120, opacity: 0.04, pointerEvents: "none" }}>
+        <Monogram size={680} color={CREAM} />
+      </div>
+
+      <div style={{ maxWidth: 1400, margin: "0 auto", position: "relative" }}>
+        {/* Header */}
+        <Reveal>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap", marginBottom: 8 }}>
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              padding: "7px 14px", borderRadius: 999,
+              border: `1.5px solid ${PURPLE_LIGHT}55`,
+              fontFamily: MONO, fontSize: 13, fontWeight: 600,
+              letterSpacing: "0.1em", textTransform: "uppercase" as const,
+              color: PURPLE_LIGHT,
+            }}>{lp.eyebrow}</span>
+            <span style={{
+              background: `linear-gradient(90deg, ${PURPLE}, ${PURPLE_LIGHT})`,
+              color: "#fff", padding: "7px 16px", borderRadius: 999,
+              fontFamily: MONO, fontSize: 13, fontWeight: 700, letterSpacing: "0.06em",
+            }}>990 €/mois TTC</span>
+          </div>
+        </Reveal>
+
+        <Reveal delay={80}>
+          <h2 style={{
+            fontFamily: DISPLAY, fontWeight: 900,
+            fontSize: "clamp(48px, 6.5vw, 96px)", lineHeight: 0.95, letterSpacing: "-0.04em",
+            margin: "24px 0 16px", color: CREAM,
+          }}>
+            {lp.title[0]}<br />
+            <span style={{ color: PURPLE_LIGHT }}>{lp.title[1]}</span>
+          </h2>
+        </Reveal>
+
+        <Reveal delay={140}>
+          <p style={{
+            fontFamily: BODY, fontSize: 22, lineHeight: 1.45,
+            color: "rgba(241,236,227,0.72)", margin: "0 0 72px", maxWidth: 720,
+          }}>{lp.subtitle}</p>
+        </Reveal>
+
+        {/* Feature checklist + pricing card side by side */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }} className="sp-steps-grid">
+          {/* Left — feature list */}
+          <Reveal delay={100}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              {lp.features.map((f, i) => (
+                <div key={i} style={{
+                  display: "flex", alignItems: "center", gap: 18,
+                  padding: "18px 24px", borderRadius: 18,
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                }}>
+                  <span style={{
+                    width: 44, height: 44, borderRadius: 12, flexShrink: 0,
+                    background: `linear-gradient(135deg, ${PURPLE}44, ${PURPLE_LIGHT}22)`,
+                    border: `1px solid ${PURPLE_LIGHT}44`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 22, color: PURPLE_LIGHT,
+                  }}>{f.symbol}</span>
+                  <span style={{ fontFamily: BODY, fontSize: 18, fontWeight: 600, color: CREAM }}>{f.label}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Right — premium pricing card */}
+          <Reveal delay={200}>
+            <div style={{
+              background: `linear-gradient(145deg, ${PURPLE}CC, #4C1D95)`,
+              borderRadius: 28, padding: 40,
+              boxShadow: `0 40px 80px -30px ${PURPLE}88, 0 0 0 1px ${PURPLE_LIGHT}33`,
+              position: "relative", overflow: "hidden",
+            }}>
+              <div style={{ position: "absolute", top: -60, right: -60, width: 200, height: 200, borderRadius: "50%", background: `${PURPLE_LIGHT}18` }} />
+              <div style={{ fontFamily: MONO, fontSize: 12, color: PURPLE_LIGHT, letterSpacing: "0.15em", textTransform: "uppercase" as const, marginBottom: 8 }}>PLAN LEGAL PRO</div>
+              <div style={{ fontFamily: DISPLAY, fontSize: 64, lineHeight: 1, letterSpacing: "-0.04em", color: "#fff", margin: "12px 0 4px" }}>990 €</div>
+              <div style={{ fontFamily: BODY, fontSize: 16, color: "rgba(255,255,255,0.6)", marginBottom: 28 }}>par mois · TTC · tout inclus</div>
+              <div style={{ borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: 24, marginBottom: 28 }}>
+                {[
+                  "Mots-clés illimités",
+                  "Sources illimitées",
+                  "Toutes plateformes incluses",
+                  "Demandes d'intervention légale",
+                  "Gestion multi-clients (dossiers)",
+                  "Rapports PDF à votre nom",
+                  "Preuves numériques exportables",
+                  "Support prioritaire",
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "7px 0", fontFamily: BODY, fontSize: 15, color: "rgba(255,255,255,0.88)" }}>
+                    <span style={{ color: PURPLE_LIGHT, fontSize: 16, flexShrink: 0 }}>✓</span>
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <a href="https://app.reeact.io/LegalProOffer" style={{
+                display: "block", textAlign: "center" as const,
+                padding: "18px 24px", borderRadius: 999,
+                background: "#fff", color: PURPLE,
+                fontFamily: BODY, fontWeight: 700, fontSize: 17,
+                textDecoration: "none", letterSpacing: "-0.01em",
+              }}>
+                Découvrir le plan Legal Pro →
+              </a>
+              <div style={{ textAlign: "center" as const, marginTop: 14, fontFamily: MONO, fontSize: 12, color: "rgba(255,255,255,0.4)" }}>
+                Sans engagement · Prorata si upgrade
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Extras — distinguishing features */}
+        {lp.extras.length > 0 && (
+          <>
+            <Reveal delay={80}>
+              <div style={{ fontFamily: DISPLAY, fontWeight: 900, fontSize: 36, letterSpacing: "-0.03em", color: CREAM, margin: "100px 0 40px", lineHeight: 1 }}>
+                {lp.extraTitle}
+              </div>
+            </Reveal>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="sp-steps-grid">
+              {lp.extras.map((e, i) => (
+                <Reveal key={i} delay={i * 80}>
+                  <div style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    borderRadius: 22, padding: 32,
+                  }}>
+                    <div style={{
+                      width: 52, height: 52, borderRadius: 14,
+                      background: `linear-gradient(135deg, ${PURPLE}55, ${PURPLE_LIGHT}33)`,
+                      border: `1px solid ${PURPLE_LIGHT}44`,
+                      color: PURPLE_LIGHT, fontSize: 26,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      marginBottom: 18,
+                    }}>{e.symbol}</div>
+                    <h3 style={{
+                      fontFamily: DISPLAY, fontWeight: 900, fontSize: 24, lineHeight: 1,
+                      letterSpacing: "-0.03em", margin: "0 0 12px", color: CREAM,
+                    }}>{e.title}</h3>
+                    <p style={{ fontSize: 15, lineHeight: 1.6, color: "rgba(241,236,227,0.68)", margin: 0 }}>{e.body}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </section>
+  );
+}
+
 // ─── Section 7 — FAQ ─────────────────────────────────────────────────────────
 function FAQ({ data }: { data: SectorData }) {
   return (
@@ -761,6 +930,7 @@ export default function SectorPageClient({ data }: { data: SectorData }) {
         <Features data={data} />
         <DashboardSection />
         {data.agencySection && <AgencySection ag={data.agencySection} />}
+        {data.legalProSection && <LegalProSection lp={data.legalProSection} />}
         <FAQ data={data} />
         <FinalCTA data={data} />
         <Footer />

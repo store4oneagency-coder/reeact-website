@@ -66,3 +66,13 @@ body {
 /* Hide scrollbar for ticker */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── Nav responsive ─────────────────────────────────────────────────────── */
+.hidden-mobile { display: flex; }
+.show-mobile   { display: none; }
+
+@media (max-width: 768px) {
+  .hidden-mobile { display: none !important; }
+  .show-mobile   { display: flex !important; }
+  .nav-inner     { padding-left: 20px !important; padding-right: 20px !important; padding-top: 14px !important; padding-bottom: 14px !important; }
+}

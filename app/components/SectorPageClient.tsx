@@ -71,21 +71,33 @@ const CSS = `
   .sp-show-mobile   { display: none !important; }
 
   @media (max-width: 900px) {
-    .sp-hero-grid   { grid-template-columns: 1fr !important; }
-    .sp-steps-grid  { grid-template-columns: 1fr !important; }
-    .sp-feat-grid   { grid-template-columns: 1fr 1fr !important; }
-    .sp-stats-grid  { grid-template-columns: repeat(2, 1fr) !important; }
-    .sp-agency-grid { grid-template-columns: 1fr 1fr !important; }
-    .sp-dash-mock   { grid-template-columns: 1fr !important; }
+    .sp-hero-grid     { grid-template-columns: 1fr !important; }
+    .sp-steps-grid    { grid-template-columns: 1fr !important; }
+    .sp-feat-grid     { grid-template-columns: 1fr 1fr !important; }
+    .sp-stats-grid    { grid-template-columns: repeat(2, 1fr) !important; }
+    .sp-agency-grid   { grid-template-columns: 1fr 1fr !important; }
+    .sp-dash-mock     { grid-template-columns: 1fr !important; }
     .sp-dash-mock aside { display: none; }
     .sp-hidden-mobile { display: none !important; }
     .sp-show-mobile   { display: flex !important; }
+    /* Hero responsive */
+    .sp-hero-section  { padding: 100px 20px 60px !important; min-height: auto !important; }
+    /* Score strip compact */
+    .sp-score-trend   { display: none !important; }
+    /* DashboardMock stat grid */
+    .sp-dash-stat-grid { grid-template-columns: 1fr 1fr !important; }
+    /* Section padding */
+    .sp-section-pad   { padding: 60px 20px !important; }
+    /* h2 clamp override */
+    .sp-h2            { font-size: clamp(36px, 9vw, 64px) !important; }
   }
 
   @media (max-width: 560px) {
-    .sp-feat-grid   { grid-template-columns: 1fr !important; }
-    .sp-stats-grid  { grid-template-columns: repeat(2, 1fr) !important; }
-    .sp-agency-grid { grid-template-columns: 1fr !important; }
+    .sp-feat-grid     { grid-template-columns: 1fr !important; }
+    .sp-stats-grid    { grid-template-columns: repeat(2, 1fr) !important; }
+    .sp-agency-grid   { grid-template-columns: 1fr !important; }
+    .sp-hero-section  { padding: 90px 16px 50px !important; }
+    .sp-section-pad   { padding: 50px 16px !important; }
   }
 `;
 

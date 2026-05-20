@@ -1018,15 +1018,15 @@ function Footer() {
             </p>
           </div>
           {[
-            { t: "Produit",    l: ["Fonctionnalités","Tableau de bord","Tarifs","API","Changelog"] },
-            { t: "Ressources", l: ["Documentation","Centre d'aide","Cas clients","Blog","Glossaire"] },
-            { t: "Société",    l: ["À propos","Mentions légales","CGU","Confidentialité","Contact"] },
+            { t: "Produit",    links: [["Fonctionnalités","/#features"],["Tableau de bord","https://app.reeact.io"],["Tarifs","/#pricing"],["Scanner gratuit","https://app.reeact.io/PublicScanner"],["S'inscrire","https://app.reeact.io/register"]] },
+            { t: "Ressources", links: [["Documentation","#"],["Centre d'aide","https://app.reeact.io/Support"],["Cas clients","#"],["Blog","#"],["Glossaire","#"]] },
+            { t: "Société",    links: [["À propos","#"],["Mentions légales","/mentions-legales"],["CGU / CGV","https://app.reeact.io/TermsAndConditions"],["Confidentialité","https://app.reeact.io/TermsAndConditions"],["Contact","mailto:contact@reeact.io"]] },
           ].map(col => (
             <div key={col.t}>
               <div style={{ fontFamily: MONO, fontSize: 11, letterSpacing: "0.15em", opacity: 0.5, marginBottom: 14 }}>{col.t.toUpperCase()}</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-                {col.l.map(l => (
-                  <a key={l} href="#" style={{ color: CREAM, textDecoration: "none", fontSize: 15, opacity: 0.8 }}
+                {col.links.map(([l, h]) => (
+                  <a key={l} href={h} style={{ color: CREAM, textDecoration: "none", fontSize: 15, opacity: 0.8 }}
                     onMouseEnter={e => (e.currentTarget as HTMLElement).style.opacity = "1"}
                     onMouseLeave={e => (e.currentTarget as HTMLElement).style.opacity = "0.8"}>{l}</a>
                 ))}

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import type { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
-import { getSupabaseServer } from '@/app/lib/getSupabaseServer()Client';
+import { getSupabaseServer } from '@/app/lib/supabaseServerClient';
 import { KNOWLEDGE_BASE } from '@/app/lib/chatKnowledgeBase';
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

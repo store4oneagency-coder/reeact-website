@@ -230,29 +230,54 @@ export default function ChatWidget() {
       `}</style>
 
       {/* ── Bouton flottant ───────────────────────────────────────── */}
-      <button
-        onClick={() => setIsOpen((v) => !v)}
-        aria-label="Ouvrir l'assistant Reeact"
-        className="chat-fab"
-        style={{
-          position: 'fixed',
-          bottom: 28,
-          right: 28,
-          zIndex: 9999,
-          width: 56,
-          height: 56,
-          borderRadius: '50%',
-          background: ORANGE,
-          border: 'none',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#fff',
-          boxShadow: '0 4px 20px rgba(255, 122, 58, 0.4)',
-          transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-        }}
-      >
+      <div style={{
+        position: 'fixed',
+        bottom: 28,
+        right: 28,
+        zIndex: 9999,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+      }}>
+        {/* Bulle message */}
+        {!isOpen && (
+          <div style={{
+            background: '#fff',
+            color: TEAL_DEEP,
+            fontFamily: BODY_FONT,
+            fontSize: 13,
+            fontWeight: 600,
+            padding: '9px 14px',
+            borderRadius: 20,
+            boxShadow: '0 4px 16px rgba(27,54,69,0.13)',
+            border: `1px solid ${TEAL}18`,
+            whiteSpace: 'nowrap',
+            pointerEvents: 'none',
+          }}>
+            Je suis là pour vous renseigner
+          </div>
+        )}
+
+        <button
+          onClick={() => setIsOpen((v) => !v)}
+          aria-label="Ouvrir l'assistant Reeact"
+          className="chat-fab"
+          style={{
+            width: 56,
+            height: 56,
+            borderRadius: '50%',
+            background: ORANGE,
+            border: 'none',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#fff',
+            boxShadow: '0 4px 20px rgba(255, 122, 58, 0.4)',
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+            flexShrink: 0,
+          }}
+        >
         {isOpen ? (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
             <path d="M18 6 6 18M6 6l12 12" />
@@ -275,6 +300,7 @@ export default function ChatWidget() {
           </>
         )}
       </button>
+      </div>
 
       {/* ── Panel du chat ─────────────────────────────────────────── */}
       {isOpen && (

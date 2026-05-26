@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
+import type { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
 import { supabaseServer } from '@/app/lib/supabaseServerClient';
 import { KNOWLEDGE_BASE } from '@/app/lib/chatKnowledgeBase';
 
@@ -80,9 +81,14 @@ export async function POST(req: NextRequest) {
       .order('created_at', { ascending: false })
       .limit(20);
 
-    const messages = [
-      ...((history ?? []) as { role: string; content: string }[]).reverse(),
-      { role: 'user' as const, content: message.trim() },
+    const messages: ChatCompletionMessageParam[] = [
+      ...((history ?? []) as { role: string; content: string }[])
+        .reverse()
+        .map((m) => ({
+          role: m.role as 'user' | 'assistant',
+          content: m.content,
+        })),
+      { role: 'user', content: message.trim() },
     ];
 
     // ── Appel OpenAI GPT-4o mini ──────────────────────────────────────────────
@@ -91,7 +97,7 @@ export async function POST(req: NextRequest) {
       max_tokens: 600,
       temperature: 0.7,
       messages: [
-        { role: 'system', content: KNOWLEDGE_BASE },
+        { role: 'system' as const, content: KNOWLEDGE_BASE },
         ...messages,
       ],
     });

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 import type { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
-import { supabaseServer } from '@/app/lib/supabaseServerClient';
+import { getSupabaseServer } from '@/app/lib/getSupabaseServer()Client';
 import { KNOWLEDGE_BASE } from '@/app/lib/chatKnowledgeBase';
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
     // ── Rate limiting : max 20 messages utilisateur / heure / visiteur ────────
     const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-    const { data: recentConvs } = await supabaseServer
+    const { data: recentConvs } = await getSupabaseServer()
       .from('chat_conversations')
       .select('id')
       .eq('visitor_id', visitorId)
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
     if (recentConvs && recentConvs.length > 0) {
       const convIds = recentConvs.map((c: { id: string }) => c.id);
-      const { count } = await supabaseServer
+      const { count } = await getSupabaseServer()
         .from('chat_messages')
         .select('id', { count: 'exact', head: true })
         .eq('role', 'user')
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     let ctaAlreadyShown = false;
 
     if (!convId) {
-      const { data, error } = await supabaseServer
+      const { data, error } = await getSupabaseServer()
         .from('chat_conversations')
         .insert({
           visitor_id: visitorId,
@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
       convId = data.id;
     } else {
       // Récupérer l'état actuel de la conversation
-      const { data: conv } = await supabaseServer
+      const { data: conv } = await getSupabaseServer()
         .from('chat_conversations')
         .select('message_count, cta_shown')
         .eq('id', convId)
@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
     }
 
     // ── Récupérer l'historique (20 derniers messages = 10 échanges) ───────────
-    const { data: history } = await supabaseServer
+    const { data: history } = await getSupabaseServer()
       .from('chat_messages')
       .select('role, content')
       .eq('conversation_id', convId)
@@ -106,7 +106,7 @@ export async function POST(req: NextRequest) {
     const tokensUsed = completion.usage?.total_tokens ?? 0;
 
     // ── Sauvegarder les deux messages ─────────────────────────────────────────
-    await supabaseServer.from('chat_messages').insert([
+    await getSupabaseServer().from('chat_messages').insert([
       {
         conversation_id: convId,
         role: 'user',
@@ -124,7 +124,7 @@ export async function POST(req: NextRequest) {
     const newCount = currentCount + 2;
     const shouldShowCta = newCount >= 4 && !ctaAlreadyShown;
 
-    await supabaseServer
+    await getSupabaseServer()
       .from('chat_conversations')
       .update({
         message_count: newCount,

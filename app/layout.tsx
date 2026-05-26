@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo_Black, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import ChatWidget from "./components/ChatWidget";
 
 const archivoBlack = Archivo_Black({
   subsets: ["latin"],
@@ -100,6 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${archivoBlack.variable} ${interTight.variable} ${jetbrainsMono.variable} antialiased`}
         style={{ fontFamily: "var(--font-inter-tight), system-ui, sans-serif" }}>
         {children}
+        <ChatWidget />
       </body>
     </html>
   );
